@@ -1,0 +1,112 @@
+#chooseFormat {
+  max-width: 100%;
+  margin: 85px;
+}
+
+#chooseSection {
+  max-width: 100%;
+  margin: 85px;
+  display: none;
+}
+
+h1 {
+  text-align: center;
+}
+
+#preview {
+  border: 2px solid black;
+  padding: 0;
+  text-align: justify;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+#preview .left {
+  float: left;
+  clear: left;
+}
+
+#preview .right {
+  float: right;
+  clear: right;
+}
+
+#preview .top.left {
+  shape-outside: radial-gradient(
+    ellipse at bottom right,
+    transparent 69%,
+    red 69%
+  );
+  height: 50%;
+  width: 50%;
+}
+
+.top.right {
+  shape-outside: radial-gradient(
+    ellipse at bottom left,
+    transparent 69%,
+    red 69%
+  );
+  height: 50%;
+  width: 50%;
+}
+
+.bottom.left {
+  shape-outside: radial-gradient(
+    ellipse at top right,
+    transparent 69%,
+    red 69%
+  );
+  height: 50%;
+  width: 50%;
+}
+
+.bottom.right {
+  shape-outside: radial-gradient(ellipse at top left, transparent 69%, red 69%);
+  height: 50%;
+  width: 50%;
+}
+
+.property {
+  margin-bottom: 15px;
+}
+
+.propertyHeader {
+  font-weight: bold;
+}
+
+.propertyValue {
+  margin-top: 30px;
+}
+
+#templatePreviewContainer {
+  padding-left: 10%;
+}
+
+#templatePreview {
+  border: 1px solid black;
+  height: 500px;
+  border-top-left-radius: 5% 5%;
+  border-top-right-radius: 5% 5%;
+  border-bottom-right-radius: 5% 5%;
+  border-bottom-left-radius: 5% 5%;
+}
+
+.btn {
+  background-color: #ec8b28;
+  border-color: #ec8b28;
+  font-size: 22px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#mainHeaderPreview {
+  font-size: 30px;
+}
+
+.subHeaderPreview {
+  font-size: 25px;
+}
+
+.subContentPreview {
+  font-size: 20px;
+}
