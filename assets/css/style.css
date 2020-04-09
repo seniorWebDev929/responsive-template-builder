@@ -86,10 +86,11 @@ h1 {
 #templatePreview {
   border: 1px solid black;
   height: 500px;
-  border-top-left-radius: 5% 5%;
+  width: 500px;
+  /* border-top-left-radius: 5% 5%;
   border-top-right-radius: 5% 5%;
   border-bottom-right-radius: 5% 5%;
-  border-bottom-left-radius: 5% 5%;
+  border-bottom-left-radius: 5% 5%; */
 }
 
 .btn {
@@ -109,4 +110,46 @@ h1 {
 
 .subContentPreview {
   font-size: 20px;
+}
+
+#dotRounded {
+  position: relative;
+  top: -500px;
+  width: 500px;
+  height: 500px;
+  border: 1px dashed black;
+}
+
+.movablePoint {
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  border-radius: 8px;
+  border: 1px solid black;
+}
+
+.movablePoint:hover {
+  cursor: pointer;
+  background-color: cornflowerblue;
+  border-color: cornflowerblue;
+}
+
+#movableTopLeft {
+  top: -8px;
+  left: -8px;
+}
+
+#movableTopRight {
+  top: -8px;
+  left: 492px;
+}
+
+#movableBottomRight {
+  top: 492px;
+  left: 492px;
+}
+
+#movableBottomLeft {
+  top: 492px;
+  left: -8px;
 }
