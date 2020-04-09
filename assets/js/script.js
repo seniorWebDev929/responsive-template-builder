@@ -73,6 +73,10 @@ function refreshPreview() {
 }
 
 $(document).ready(function () {
+  var topLeftSelected = false;
+  var topRightSelected = false;
+  var bottomLeftSelected = false;
+  var bottomRightSelected = false;
   $("#generateTemplate").click(function () {
     $("#chooseFormat").hide();
     $("#chooseSection").show();
@@ -141,5 +145,102 @@ $(document).ready(function () {
         refreshPreview();
         break;
     }
+  });
+  $("#movableTopLeft").mousedown(function(){
+    topLeftSelected = true;
+  });
+  $("#movableTopRight").mousedown(function(){
+    topRightSelected = true;
+  });
+  $("#movableBottomLeft").mousedown(function(){
+    bottomLeftSelected = true;
+  });
+  $("#movableBottomRight").mousedown(function(){
+    bottomRightSelected = true;
+  });
+  $("*").mousemove(function(e){
+
+    if(topLeftSelected){
+      if(e.stopPropagation) e.stopPropagation();
+      if(e.preventDefault) e.preventDefault();
+      e.cancelBubble=true;
+      e.returnValue=false;
+      //Get Absolute position
+      var pos = $("#dotRounded").offset();
+      var offset = e.pageX - pos.left;
+      if(offset < 0)
+        offset = 0;
+      if(offset > width)
+        offset = width;
+      $("#movableTopLeft").css("left",  offset - 8);
+      radiusTopLeft1 = parseInt((offset / width)*100);
+      radiusTopRight1 = 100 - radiusTopLeft1;
+      $("input[name='topCircumference']").val(radiusTopLeft1);
+      refreshPreview();
+    }
+
+    else if(topRightSelected){
+      if(e.stopPropagation) e.stopPropagation();
+      if(e.preventDefault) e.preventDefault();
+      e.cancelBubble=true;
+      e.returnValue=false;
+      //Get Absolute position
+      var pos = $("#dotRounded").offset();
+      var offset = e.pageY - pos.top;
+      if(offset < 0)
+        offset = 0;
+      if(offset > height)
+        offset = height;
+      $("#movableTopRight").css("top",  offset - 8);
+      radiusTopRight2 = parseInt((offset / height)*100);
+      radiusBottomRight2 = 100 - radiusTopRight2;
+      $("input[name='rightCircumference']").val(radiusTopRight2);
+      refreshPreview();
+    }
+
+    else if(bottomRightSelected){
+      if(e.stopPropagation) e.stopPropagation();
+      if(e.preventDefault) e.preventDefault();
+      e.cancelBubble=true;
+      e.returnValue=false;
+      //Get Absolute position
+      var pos = $("#dotRounded").offset();
+      var offset = e.pageX - pos.left;
+      if(offset < 0)
+        offset = 0;
+      if(offset > width)
+        offset = width;
+      $("#movableBottomRight").css("left",  offset - 8);
+      radiusBottomLeft1 = parseInt((offset / width)*100);
+      radiusBottomRight1 = 100 - radiusBottomLeft1;
+      $("input[name='bottomCircumference']").val(radiusBottomRight1);
+      refreshPreview();
+    }
+
+    else if(bottomLeftSelected){
+      if(e.stopPropagation) e.stopPropagation();
+      if(e.preventDefault) e.preventDefault();
+      e.cancelBubble=true;
+      e.returnValue=false;
+      //Get Absolute position
+      var pos = $("#dotRounded").offset();
+      var offset = e.pageY - pos.top;
+      if(offset < 0)
+        offset = 0;
+      if(offset > height)
+        offset = height;
+      $("#movableBottomLeft").css("top",  offset - 8);
+      radiusTopLeft2 = parseInt((offset / height)*100);
+      radiusBottomLeft2 = 100 - radiusTopLeft2;
+      $("input[name='leftCircumference']").val(radiusBottomLeft2);
+      refreshPreview();
+    }
+
+  });
+  $("body").mouseup(function(){
+    topLeftSelected = false;
+    topRightSelected = false;
+    bottomLeftSelected = false;
+    bottomRightSelected = false;
   });
 });

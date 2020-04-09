@@ -1,5 +1,4 @@
-<?php 
-?>
+<?php?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,7 +13,7 @@
   <body>
     <div id="chooseFormat">
       <div class="row">
-        <div class="col-6" id="templateProperties">
+        <div class="col-6">
           <div class="property row">
             <div class="col-9">
               <label class="propertyHeader">Top Circumference(%)</label>
