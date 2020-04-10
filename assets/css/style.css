@@ -100,12 +100,14 @@ h1 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#mainHeaderPreview {
-  font-size: 30px;
+#mainHeader {
+  font-size: 20px;
+  white-space: nowrap;
+  font-weight: bold;
 }
 
-.subHeaderPreview {
-  font-size: 25px;
+.subHeader {
+  font-size: 18px;
 }
 
 .subContentPreview {
@@ -152,4 +154,23 @@ h1 {
 #movableBottomLeft {
   top: 492px;
   left: -8px;
+}
+
+.crossLineThin {
+  border: 1px solid black;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: none;
+}
+
+.crossLineThick {
+  border: 2px solid black;
+}
+
+.warningHeader {
+  display: none;
+}
+
+.warningDetail {
+  display: none;
 }
