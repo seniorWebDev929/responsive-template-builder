@@ -69,7 +69,7 @@ function refreshPreview() {
   if (radiusTopLeft2 > radiusTopRight2) {
     $("#preview .bottom.right").after($("#preview .bottom.left"));
   }
-  $("#preview").css("min-height", height + "px");
+  $("#preview").css("height", height + "px");
   $("#preview").css("width", width + "px");
   $("#preview").css("border-color", color);
 }
