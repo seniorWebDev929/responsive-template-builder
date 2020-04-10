@@ -69,7 +69,7 @@ function refreshPreview() {
   if (radiusTopLeft2 > radiusTopRight2) {
     $("#preview .bottom.right").after($("#preview .bottom.left"));
   }
-  $("#preview").css("height", height + "px");
+  $("#preview").css("min-height", height + "px");
   $("#preview").css("width", width + "px");
   $("#preview").css("border-color", color);
 }
@@ -84,23 +84,6 @@ $(document).ready(function () {
     $("#chooseSection").show();
     refreshPreview();
   });
-
-  // $("#mainHeader").bind("input", function (e) {
-  //   // $("#preview").contents().last()[0].textContent = e.target.value;
-  //   $("#mainHeaderPreview").text(e.target.value);
-  // });
-
-  // $("#subHeader1").bind("input", function (e) {
-  //   $("#subHeaderPreview1").text(e.target.value);
-  // });
-
-  // $("#subHeader2").bind("input", function (e) {
-  //   $("#subHeaderPreview2").text(e.target.value);
-  // });
-
-  // $("#subContent1").bind("input", function (e) {
-  //   $("#subContentPreview1").text(e.target.value);
-  // });
 
   $(".propertyValue").bind("input", function (e) {
     switch (e.target.name) {

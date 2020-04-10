@@ -19,6 +19,7 @@ h1 {
   text-align: justify;
   overflow: hidden;
   word-break: break-word;
+  margin-left: 110px;
 }
 
 #preview .left {
@@ -69,6 +70,8 @@ h1 {
 
 .property {
   margin-bottom: 15px;
+  display: flex;
+  align-items: center;
 }
 
 .propertyHeader {
@@ -76,7 +79,7 @@ h1 {
 }
 
 .propertyValue {
-  margin-top: 30px;
+  width: 55px;
 }
 
 #templatePreviewContainer {
@@ -173,4 +176,19 @@ h1 {
 
 .warningDetail {
   display: none;
+}
+
+#secondHeader {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#purposeList .row {
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.subHeaderInput {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
