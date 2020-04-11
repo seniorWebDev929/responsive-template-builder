@@ -240,10 +240,14 @@ $(document).ready(function () {
     if($(this).prop("checked") == true) {
       $(".bi-three-dots").removeAttr("hidden");
       $("input[name='activeIngredientPurpose']").removeAttr("hidden");
+      $("#purposeHeader").show();
+      $(".purposeDetail").show();
     }
     else if($(this).prop("checked") == false) {
       $(".bi-three-dots").attr("hidden", true);
       $("input[name='activeIngredientPurpose']").attr("hidden", true);
+      $("#purposeHeader").hide();
+      $(".purposeDetail").hide();
     }
   });
 

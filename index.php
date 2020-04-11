@@ -126,7 +126,7 @@
           <div class="row subHeaderInput">
             Warnings
           </div>
-          <div class="row">
+          <div class="row warningContent">
             <input type="checkbox" id="forWhat"/>
             <label for="forWhat">For</label>
             <div id="forWhatContent" hidden>
@@ -138,64 +138,64 @@
               <label for="forVaginal">vaginal</label>
             </div>
           </div>
-          <div class="row">
+          <div class="row warningContent">
             <input id="syndrome" type="checkbox"/>
             <label for="syndrome">Reye's syndrome warning</label>
           </div>
           <input id="syndromeContent" type="text" class="row" hidden />
-          <div class="row">
+          <div class="row warningContent">
             <input id="allergy" type="checkbox" />
             <label for="allergy">Allergy Alert</label>
           </div>
           <input id="allergyContent" type="text" class="row" hidden />
-          <div class="row">
+          <div class="row warningContent">
             <input id="flammable" type="checkbox" />
             <label for="flammable">Flammable</label>
           </div>
           <input id="flammableContent" type="text" class="row" hidden />
-          <div class="row">
+          <div class="row warningContent">
             <input id="choking" type="checkbox" />
             <label for="choking">Choking</label>
           </div>
           <input type="text" id="chokingContent" class="row" hidden />
-          <div class="row">
+          <div class="row warningContent">
             <input id="alchole" type="checkbox" />
             <label for="alchole">Alchole warning</label>
           </div>
           <input id="alcholeContent" type="text" class="row" hidden />
-          <div class="row">
+          <div class="row warningContent">
             <input id="stomach" type="checkbox" />
             <label for="stomach">Stomach bleeding warning</label>
           </div>
           <input id="stomachContent" type="text" class="row" hidden />
-          <div class="row">
+          <div class="row warningContent">
             <input id="sore" type="checkbox" />
             <label for="sore">Sore throat warning</label>
           </div>
           <input id="soreContent" type="text" class="row" hidden />
-          <div class="row">
+          <div class="row warningContent">
             <input id="dosage" type="checkbox" />
             <label for="dosage">Dosage warning</label>
           </div>
           <input id="dosageContent" type="text" class="row" hidden />
-          <div class="row">
+          <div class="row warningContent">
             <input id="std" type="checkbox" />
             <label for="std">Sexually transmitted diseases (STD) alert</label>
           </div>
           <input id="stdContent" type="text" class="row" hidden />
-          <div class="row">
+          <div class="row warningContent">
             <input id="notuse" type="checkbox" />
             <label for="notuse">Do not use</label>
           </div>
           <input id="notuseContent" type="text" class="row" hidden />
           <div>
             <label class="row">Ask a doctor before use</label>
-            <div class="row">
+            <div class="row warningContent indentedRow">
               <input type="checkbox"  id="youhave"/>
               <label for="youhave">if you have</label>
             </div>
             <input type="text" id="youhaveContent" hidden/>
-            <div class="row">
+            <div class="row warningContent indentedRow">
               <input type="checkbox"  id="childhave"/>
               <label for="childhave">if your child have</label>
             </div>
@@ -203,33 +203,33 @@
           </div>
           <div>
             <label class="row">Ask a doctor or pharmacist before use</label>
-            <div class="row">
+            <div class="row warningContent indentedRow">
               <input type="checkbox"  id="youare"/>
               <label for="youare">if you are</label>
             </div>
             <input type="text" id="youareContent" hidden/>
-            <div class="row">
+            <div class="row warningContent indentedRow">
               <input type="checkbox"  id="childis"/>
               <label for="childis">if your child is</label>
             </div>
             <input type="text" id="childisContent" hidden/>
           </div>
-          <div class="row">
+          <div class="row warningContent">
             <input id="whenUsingThis" type="checkbox" />
             <label for="whenUsingThis">When using this product</label>
           </div>
           <input id="whenUsingThisContent" type="text" class="row" hidden />
-          <div class="row">
+          <div class="row warningContent">
             <input id="stopUse" type="checkbox" />
             <label for="stopUse">Stop use and ask a doctor if</label>
           </div>
           <input id="stopUseContent" type="text" class="row" hidden />
-          <div class="row">
+          <div class="row warningContent">
             <input id="pregnant" type="checkbox" />
             <label for="pregnant">If pregnant or breast-feeding</label>
           </div>
           <input id="pregnantContent" type="text" class="row" hidden />
-          <div class="row">
+          <div class="row warningContent">
             <input id="keepOut" type="checkbox" />
             <label for="keepOut">Keep out of reach of children</label>
           </div>
@@ -238,7 +238,7 @@
             Directions
           </div>
           <input id="directions" type="text"/>
-          <div class="row">
+          <div class="row warningContent">
             <input id="inActive" type="checkbox" />
             <label for="inActive">InActive Ingredient</label>
           </div>
@@ -256,11 +256,11 @@
           <span class="activeIngredientDetail" id="activeIngredientDetail_1"></span>
           <span class="purposeDetail" id="purposeDetail_1"></span><br>
           <div class="crossLineThick" id="useCrossLine"></div>
-          <span >Use</span>
+          <span class="subHeader">Use</span>
           <span id="usesDetail"></span>
           <div class="crossLineThick"></div>
           
-          <span>Warnings</span>
+          <span class="subHeader">Warnings</span><br>
           <span id="forWhatDetail" class="warningDetail"></span>
           <div class="crossLineThin" ></div>
           <span id="syndromeHeader" class="warningHeader">Reye's syndrome warning</span>
@@ -318,10 +318,10 @@
           <span id="keepOutDetail" class="warningDetail"></span>
           
           <div class="crossLineThick"></div>
-          <span>Directions</span><br>
-          <span id="directionsDetail" class="warningDetail"></span>
+          <span class="subHeader">Directions</span><br>
+          <span id="directionsDetail"></span>
           <div class="crossLineThick"></div>
-          <span >Inactive Ingredients</span>
+          <span class="subHeader">Inactive Ingredients</span>
           <span id="inActiveDetail" class="warningDetail"></span>
         </div>
       </div>
