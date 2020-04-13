@@ -58,20 +58,20 @@ function refreshPreview() {
   $("#dotRounded").css("width", width);
   $("#dotRounded").css("top", "-" + height + "px");
 
-  $("#preview").find(".top.left").css("width", radiusTopLeft1 + "%");
-  $("#preview").find(".top.right").css("width", radiusTopRight1 + "%");
-  $("#preview").find(".bottom.right").css("width", radiusBottomRight1 + "%");
-  $("#preview").find(".bottom.left").css("width", radiusBottomLeft1 + "%");
-  $("#preview").find(".top.left").css("height", radiusTopLeft2 + "%");
-  $("#preview").find(".top.right").css("height", radiusTopRight2 + "%");
-  $("#preview").find(".bottom.right").css("height", radiusBottomRight2 + "%");
-  $("#preview").find(".bottom.left").css("height", radiusBottomLeft2 + "%");
+  $("#templatePreview").find(".top.left").css("width", radiusTopLeft1 + "%");
+  $("#templatePreview").find(".top.right").css("width", radiusTopRight1 + "%");
+  $("#templatePreview").find(".bottom.right").css("width", radiusBottomRight1 + "%");
+  $("#templatePreview").find(".bottom.left").css("width", radiusBottomLeft1 + "%");
+  $("#templatePreview").find(".top.left").css("height", radiusTopLeft2 + "%");
+  $("#templatePreview").find(".top.right").css("height", radiusTopRight2 + "%");
+  $("#templatePreview").find(".bottom.right").css("height", radiusBottomRight2 + "%");
+  $("#templatePreview").find(".bottom.left").css("height", radiusBottomLeft2 + "%");
   if (radiusTopLeft2 > radiusTopRight2) {
-    $("#preview .bottom.right").after($("#preview .bottom.left"));
+    $("#templatePreview .bottom.right").after($("#templatePreview .bottom.left"));
   }
-  $("#preview").css("height", height + "px");
-  $("#preview").css("width", width + "px");
-  $("#preview").css("border-color", color);
+  $("#templatePreview").css("height", height + "px");
+  $("#templatePreview").css("width", width + "px");
+  $("#templatePreview").css("border-color", color);
 }
 
 $(document).ready(function () {
@@ -79,11 +79,11 @@ $(document).ready(function () {
   var topRightSelected = false;
   var bottomLeftSelected = false;
   var bottomRightSelected = false;
-  $("#generateTemplate").click(function () {
-    $("#chooseFormat").hide();
-    $("#chooseSection").show();
-    refreshPreview();
-  });
+  // $("#generateTemplate").click(function () {
+  //   $("#chooseFormat").hide();
+  //   $("#chooseSection").show();
+  //   refreshPreview();
+  // });
 
   $(".propertyValue").bind("input", function (e) {
     switch (e.target.name) {
