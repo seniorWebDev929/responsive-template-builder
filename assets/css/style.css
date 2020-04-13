@@ -278,10 +278,6 @@ h1 {
   margin-right: 10px;
 }
 
-#headerFontSetting {
-  /* margin-left: 0px; */
-}
-
 .subSection {
   font-size: 18px;
 }
@@ -292,4 +288,16 @@ h1 {
 
 #fontSetting .row {
   margin-bottom: 5px;
+}
+
+.fa {
+  cursor: pointer;
+}
+
+#addPurpose {
+  cursor: pointer;
+}
+
+#inActiveHeader {
+  display: none;
 }

@@ -202,14 +202,9 @@
               <div>Active Ingredient</div>
               <div>
                 <input type="checkbox" id="purpose"/>
-                <label for="purpose">Purpose</label>
-                <svg id="addPurpose" class="bi bi-plus-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H4a.5.5 0 010-1h3.5V4a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
-                  <path fill-rule="evenodd" d="M7.5 8a.5.5 0 01.5-.5h4a.5.5 0 010 1H8.5V12a.5.5 0 01-1 0V8z" clip-rule="evenodd"/>
-                  <path fill-rule="evenodd" d="M14 1H2a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V2a1 1 0 00-1-1zM2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2z" clip-rule="evenodd"/>
-                </svg>
+                <label for="purpose" style="margin-right: 95px; cursor: pointer;">Purpose</label>
+                <i class="fa fa-plus-square-o" id="addPurpose"></i>
               </div>
-              
             </div>
             <div id="purposeList">
               <div class="row">
@@ -217,8 +212,10 @@
                 <svg hidden class="bi bi-three-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M3 9.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" clip-rule="evenodd"/>
                 </svg>
-                <input type="text" name="activeIngredientPurpose" id="activeIngredientPurpose_1" hidden/>
-                
+                <div>
+                  <input type="text" name="activeIngredientPurpose" id="activeIngredientPurpose_1" hidden/>
+                  <i class="fa fa-minus-square-o removeIngredient" id="removeIngredient_1"></i>
+                </div>
               </div>
             </div>
             <div class="row">
@@ -427,7 +424,7 @@
             <span class="subHeader">Directions</span><br>
             <span id="directionsDetail" class="content"></span>
             <div class="crossLineThick"></div>
-            <span class="subHeader">Inactive Ingredients</span>
+            <span class="subHeader" id="inActiveHeader">Inactive Ingredients</span>
             <span id="inActiveDetail" class="warningDetail content"></span>
           </div>
           <div id="dotRounded">
@@ -436,9 +433,6 @@
             <div class="movablePoint" id="movableBottomRight"></div>
             <div class="movablePoint" id="movableBottomLeft"></div>
           </div>
-          <!-- <div id="preview"> -->
-            
-          <!-- </div> -->
         </div>
       </div>
     </div>

@@ -37,25 +37,7 @@ function refreshPreview() {
   $("#templatePreview").css("width", width + "px");
   $("#templatePreview").css("border-color", color);
   $("#templatePreview").css("border-width", thickness);
-  // $("#preview").css(
-  //   "border-radius",
-  //   radiusTopLeft1 +
-  //     "% " +
-  //     radiusTopRight1 +
-  //     "% " +
-  //     radiusBottomRight1 +
-  //     "% " +
-  //     radiusBottomLeft1 +
-  //     "% /" +
-  //     radiusTopLeft2 +
-  //     "% " +
-  //     radiusTopRight2 +
-  //     "% " +
-  //     radiusBottomRight2 +
-  //     "% " +
-  //     radiusBottomLeft2 +
-  //     "%"
-  // );
+
   $("#dotRounded").css("height", height);
   $("#dotRounded").css("width", width);
   $("#dotRounded").css("top", "-" + height + "px");
@@ -81,11 +63,6 @@ $(document).ready(function () {
   var topRightSelected = false;
   var bottomLeftSelected = false;
   var bottomRightSelected = false;
-  // $("#generateTemplate").click(function () {
-  //   $("#chooseFormat").hide();
-  //   $("#chooseSection").show();
-  //   refreshPreview();
-  // });
 
   $(".propertyValue").bind("input", function (e) {
     switch (e.target.name) {
@@ -329,21 +306,38 @@ $(document).ready(function () {
 
   $("#addPurpose").click(function() {
     ingredientCounter++;
-    $("#purposeList").append(`<div class="row">
-    <input type="text" name="activeIngredient" id="activeIngredient_`+ingredientCounter+`"/>
-    <svg hidden class="bi bi-three-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" d="M3 9.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" clip-rule="evenodd"/>
-    </svg>
-    <input hidden type="text" name="activeIngredientPurpose" id="activeIngredientPurpose_`+ ingredientCounter+`" />
-  </div>
+    $("#purposeList").append(`
+    <div class="row">
+      <input type="text" name="activeIngredient" id="activeIngredient_`+ingredientCounter+`"/>
+      <svg hidden class="bi bi-three-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M3 9.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" clip-rule="evenodd"/>
+      </svg>
+      <div>
+        <input hidden type="text" name="activeIngredientPurpose" id="activeIngredientPurpose_`+ ingredientCounter+`" />
+        <i class="fa fa-minus-square-o removeIngredient" id="removeIngredient_`+ ingredientCounter +`"></i>
+      </div>    
+    </div>
     `);
 
     $(`<span class="activeIngredientDetail" id="activeIngredientDetail_`+ ingredientCounter +`"></span>
     <span class="purposeDetail" id="purposeDetail_`+ ingredientCounter +`"></span><br>`).insertBefore("#useCrossLine");
   });
 
+  $(document).on("click", ".removeIngredient", function(e) {
+    console.log("aaaa")
+    var counter = e.target.id.split("_")[1];
+    $(this).parent().parent()[0].remove();
+    $(".activeIngredientDetail, .purposeDetail").each(function(index) {
+      if($(this).attr("id").includes(counter)) {
+        if($(this).hasClass("purposeDetail")){
+          $(this).next("br").remove();
+        }
+        $(this).remove();
+      }
+    })
+  });
+
   $("#uses").bind("input", function(e){
-    
     $("#usesDetail").text(e.target.value);
   });
 
@@ -716,10 +710,12 @@ $(document).ready(function () {
   $("#inActive").click(function() {
     if($(this).prop("checked") == true) {
       $("#inActiveContent").removeAttr("hidden");
+      $("#inActiveHeader").show();
       $("#inActiveDetail").show();
     }
     else if($(this).prop("checked") == false) {
       $("#inActiveContent").attr("hidden", true);
+      $("#inActiveHeader").hide();
       $("#inActiveDetail").hide();
     }
   });
