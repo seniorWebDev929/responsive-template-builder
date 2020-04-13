@@ -48,8 +48,8 @@ h1 {
     transparent 69%,
     red 69%
   );
-  height: 50%;
-  width: 50%;
+  /* height: 50%;
+  width: 50%; */
 }
 
 .bottom.left {
@@ -58,14 +58,14 @@ h1 {
     transparent 69%,
     red 69%
   );
-  height: 50%;
-  width: 50%;
+  /* height: 50%;
+  width: 50%; */
 }
 
 .bottom.right {
   shape-outside: radial-gradient(ellipse at top left, transparent 69%, red 69%);
-  height: 50%;
-  width: 50%;
+  /* height: 50%;
+  width: 50%; */
 }
 
 .property {
@@ -94,6 +94,7 @@ h1 {
   text-align: justify;
   overflow: hidden;
   word-break: break-word;
+  font-family: Georgia;
 }
 
 .btn {
@@ -107,6 +108,7 @@ h1 {
   font-size: 28px;
   white-space: nowrap;
   font-weight: bold;
+  font-family: Georgia;
 }
 
 .subHeader {
@@ -224,4 +226,70 @@ h1 {
 #chooseSectionsAndFillTheDetails .row {
   margin-left: 0px;
   margin-right: 0px;
+}
+
+.sectionTitle {
+  font-size: 25px;
+  margin-left: 0;
+  margin-right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 17%;
+}
+
+#settingCollapseRight {
+  display: none;
+}
+
+#contentCollapseRight {
+  display: none;
+}
+
+#fontSetting {
+  margin-right: 20%;
+  margin-left: 10px;
+}
+
+.bold {
+  font-weight: bold;
+  border: 1px solid black;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.italic {
+  font-style: italic;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.fontSizeSetting {
+  width: 55px;
+  margin-right: 10px;
+}
+
+.fontFamilySetting {
+  margin-right: 10px;
+}
+
+#headerFontSetting {
+  /* margin-left: 0px; */
+}
+
+.subSection {
+  font-size: 18px;
+}
+
+.content {
+  font-size: 18px;
+}
+
+#fontSetting .row {
+  margin-bottom: 5px;
 }

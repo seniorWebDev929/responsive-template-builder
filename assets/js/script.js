@@ -11,6 +11,7 @@ var width = 500;
 var color = "#000000";
 var ingredientCounter = 1;
 var checkedForWhat = false;
+var thickness = 1;
 
 function refreshPreview() {
   $("#templatePreview").css(
@@ -35,25 +36,26 @@ function refreshPreview() {
   $("#templatePreview").css("height", height + "px");
   $("#templatePreview").css("width", width + "px");
   $("#templatePreview").css("border-color", color);
-  $("#preview").css(
-    "border-radius",
-    radiusTopLeft1 +
-      "% " +
-      radiusTopRight1 +
-      "% " +
-      radiusBottomRight1 +
-      "% " +
-      radiusBottomLeft1 +
-      "% /" +
-      radiusTopLeft2 +
-      "% " +
-      radiusTopRight2 +
-      "% " +
-      radiusBottomRight2 +
-      "% " +
-      radiusBottomLeft2 +
-      "%"
-  );
+  $("#templatePreview").css("border-width", thickness);
+  // $("#preview").css(
+  //   "border-radius",
+  //   radiusTopLeft1 +
+  //     "% " +
+  //     radiusTopRight1 +
+  //     "% " +
+  //     radiusBottomRight1 +
+  //     "% " +
+  //     radiusBottomLeft1 +
+  //     "% /" +
+  //     radiusTopLeft2 +
+  //     "% " +
+  //     radiusTopRight2 +
+  //     "% " +
+  //     radiusBottomRight2 +
+  //     "% " +
+  //     radiusBottomLeft2 +
+  //     "%"
+  // );
   $("#dotRounded").css("height", height);
   $("#dotRounded").css("width", width);
   $("#dotRounded").css("top", "-" + height + "px");
@@ -128,6 +130,10 @@ $(document).ready(function () {
         refreshPreview();
       case "color":
         color = e.target.value;
+        refreshPreview();
+        break;
+      case "thickness":
+        thickness = e.target.value;
         refreshPreview();
         break;
     }
@@ -234,6 +240,66 @@ $(document).ready(function () {
     topRightSelected = false;
     bottomLeftSelected = false;
     bottomRightSelected = false;
+  });
+
+  $("#settingCollapseRight").click(function(e) {
+    $("#templateSetting").show();
+    $(this).hide();
+    $("#settingCollapseDown").show();
+  });
+
+  $("#settingCollapseDown").click(function() {
+    $("#templateSetting").hide();
+    $(this).hide();
+    $("#settingCollapseRight").show();
+  });
+
+  $("#contentCollapseRight").click(function(e) {
+    $("#chooseSectionsAndFillTheDetails").show();
+    $(this).hide();
+    $("#contentCollapseDown").show();
+  });
+
+  $("#contentCollapseDown").click(function() {
+    $("#chooseSectionsAndFillTheDetails").hide();
+    $(this).hide();
+    $("#contentCollapseRight").show();
+  });
+
+  $(".fontFamilySetting").change(function() {
+    var selected = $(this).parent().parent()[0].id.split("_")[0];
+    $("."+selected).css("font-family", $(this).children("option:selected").val())
+  });
+
+  $(".fontSizeSetting").bind("input", function(e) {
+    var selected = $(this).parent().parent()[0].id.split("_")[0];
+    $("."+selected).css("font-size", e.target.value + "px");
+  });
+
+  $(".bold").click(function(e) {
+    var selected = $(this).parent().parent()[0].id.split("_")[0];
+    if($(this).attr('bolded') == "true"){
+      $("."+selected).css("font-weight", "400");
+      $(this).removeAttr("bolded");
+      $(this).css("border", "none");
+    } else {
+      $("."+selected).css("font-weight", "bold");
+      $(this).attr("bolded","true");
+      $(this).css("border", "1px solid black");
+    }
+  });
+
+  $(".italic").click(function(e) {
+    var selected = $(this).parent().parent()[0].id.split("_")[0];
+    if($(this).attr('italiced') == "true"){
+      $("."+selected).css("font-style", "normal");
+      $(this).removeAttr("italiced");
+      $(this).css("border", "none");
+    } else {
+      $("."+selected).css("font-style", "italic");
+      $(this).attr("italiced","true");
+      $(this).css("border", "1px solid black");
+    }
   });
 
   $("#purpose").click(function() {
