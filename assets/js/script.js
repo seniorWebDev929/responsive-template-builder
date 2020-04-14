@@ -19,6 +19,8 @@ var childhaveCounter = 1;
 var stopUseCounter = 1;
 var directionsCounter = 1;
 var otherCounter = 1;
+var padding = 0;
+var purposeClicked = false;
 
 function refreshPreview() {
   $("#templatePreview").css(
@@ -44,6 +46,7 @@ function refreshPreview() {
   $("#templatePreview").css("width", width + "px");
   $("#templatePreview").css("border-color", color);
   $("#templatePreview").css("border-width", thickness);
+  $("#templatePreview").css("padding", padding+"px");
 
   $("#dotRounded").css("height", height);
   $("#dotRounded").css("width", width);
@@ -173,6 +176,10 @@ $(document).ready(function () {
         break;
       case "thickness":
         thickness = e.target.value;
+        refreshPreview();
+        break;
+      case "padding":
+        padding = e.target.value;
         refreshPreview();
         break;
     }
@@ -343,6 +350,7 @@ $(document).ready(function () {
 
   $("#purpose").click(function() {
     if($(this).prop("checked") == true) {
+      purposeClicked = true;
       $(".bi-three-dots").removeAttr("hidden");
       $("input[name='activeIngredientPurpose']").removeAttr("hidden");
       $("#purposeHeader").show();
@@ -350,6 +358,7 @@ $(document).ready(function () {
       addDottedLine();
     }
     else if($(this).prop("checked") == false) {
+      purposeClicked = false;
       $(".bi-three-dots").attr("hidden", true);
       $("input[name='activeIngredientPurpose']").attr("hidden", true);
       $("#purposeHeader").hide();
@@ -386,10 +395,14 @@ $(document).ready(function () {
       </div>    
     </div>
     `);
-
+    
     $(`<span class="activeIngredientDetail" id="activeIngredientDetail_`+ ingredientCounter +`"></span>
     <span class="dottedLine" id="dottedLine_`+ingredientCounter+`"></span>
     <span class="purposeDetail" id="purposeDetail_`+ ingredientCounter +`"></span><br>`).insertBefore("#useCrossLine");
+    if(purposeClicked) {
+      $(".bi-three-dots").removeAttr("hidden");
+      $("#activeIngredientPurpose_"+ingredientCounter).removeAttr("hidden");
+    }
   });
 
   $(document).on("click", ".removeIngredient", function(e) {
