@@ -14,7 +14,7 @@
   <body>
     <div id="chooseFormat">
       <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
           <div class="row sectionTitle">
             <label>Template Settings</label>
             <i class="fa fa-angle-right" id="settingCollapseRight"></i>
@@ -218,12 +218,17 @@
                 </div>
               </div>
             </div>
-            <div class="row">
+            <div class="row" style="align-items:baseline;">
               Uses
+              <i class="fa fa-plus-square-o addBtn" id="usesAdd"></i>
             </div>
-            <div class="row">
-              <input type="text" id="uses"/>
+            <div id="usesList">
+              <div class="row" id="uses_1">
+                <input type="text" class="uses" id="uses"/>
+                <i class="fa fa-minus-square-o removeBtn removeUses"></i>
+              </div>
             </div>
+            
             <div class="row subHeaderInput">
               Warnings
             </div>
@@ -287,20 +292,39 @@
             <div class="row warningContent">
               <input id="notuse" type="checkbox" />
               <label for="notuse">Do not use</label>
+              <i class="fa fa-plus-square-o addBtn" id="doNotUseAdd" hidden></i>
             </div>
-            <input id="notuseContent" type="text" class="row" hidden />
+            <div id="doNotUseList" hidden>
+              <div class="row" id="doNotUse_1">
+                <input type="text" class="row doNotUseContent"/>
+                <i class="fa fa-minus-square-o removeDoNotUse" ></i>
+              </div>
+            </div>
+            
             <div>
               <label class="row">Ask a doctor before use</label>
               <div class="row warningContent indentedRow">
                 <input type="checkbox"  id="youhave"/>
                 <label for="youhave">if you have</label>
+                <i class="fa fa-plus-square-o addBtn" id="youhaveAdd" hidden></i>
               </div>
-              <input type="text" id="youhaveContent" hidden/>
+              <div id="youhaveList" hidden>
+                <div class="row" id="youhave_1">
+                  <input type="text" class="youhaveContent"/>
+                  <i class="fa fa-minus-square-o removeYouHave" ></i>
+                </div>
+              </div>
               <div class="row warningContent indentedRow">
                 <input type="checkbox"  id="childhave"/>
                 <label for="childhave">if your child have</label>
+                <i class="fa fa-plus-square-o addBtn" id="childhaveAdd" hidden></i>
               </div>
-              <input type="text" id="childhaveContent" hidden/>
+              <div id="childhaveList" hidden>
+                <div class="row" id="childhave_1">
+                  <input type="text" class="childhaveContent"/>
+                  <i class="fa fa-minus-square-o removeChildHave" ></i>
+                </div>
+              </div>
             </div>
             <div>
               <label class="row">Ask a doctor or pharmacist before use</label>
@@ -323,8 +347,15 @@
             <div class="row warningContent">
               <input id="stopUse" type="checkbox" />
               <label for="stopUse">Stop use and ask a doctor if</label>
+              <i class="fa fa-plus-square-o addBtn" id="stopUseAdd" hidden></i>
             </div>
-            <input id="stopUseContent" type="text" class="row" hidden />
+            <div id="stopUseList" hidden>
+              <div class="row" id="stopUse_1">
+                <input class="stopUseContent" type="text" />
+                <i class="fa fa-minus-square-o removeStopUse" ></i>
+              </div>
+            </div>
+            
             <div class="row warningContent">
               <input id="pregnant" type="checkbox" />
               <label for="pregnant">If pregnant or breast-feeding</label>
@@ -335,10 +366,26 @@
               <label for="keepOut">Keep out of reach of children</label>
             </div>
             <input id="keepOutContent" type="text" class="row" hidden />
-            <div class="row">
+            <div class="row" style="align-items:baseline;">
               Directions
+              <i class="fa fa-plus-square-o addBtn" id="directionsAdd"></i>
             </div>
-            <input id="directions" type="text"/>
+            <div id="directionsList">
+              <div class="row" id="directions_1">
+                <input type="text" class="directions"/>
+                <i class="fa fa-minus-square-o removeBtn removeDirections"></i>
+              </div>
+            </div>
+            <div class="row" style="align-items:baseline;">
+              Other information
+              <i class="fa fa-plus-square-o addBtn" id="otherAdd"></i>
+            </div>
+            <div id="otherList">
+              <div class="row" id="other_1">
+                <input type="text" class="other"/>
+                <i class="fa fa-minus-square-o removeBtn removeOther"></i>
+              </div>
+            </div>
             <div class="row warningContent">
               <input id="inActive" type="checkbox" />
               <label for="inActive">InActive Ingredient</label>
@@ -346,7 +393,7 @@
             <input id="inActiveContent" type="text" class="row" hidden />
           </div>
         </div>
-        <div class="col" id="templatePreviewContainer">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" id="templatePreviewContainer">
           <div id="templatePreview">
             <div class="shape top left"></div>
             <div class="shape top right"></div>
@@ -359,9 +406,9 @@
             <span class="activeIngredientDetail" id="activeIngredientDetail_1"></span>
             <span class="purposeDetail" id="purposeDetail_1"></span><br>
             <div class="crossLineThick" id="useCrossLine"></div>
-            <span class="subHeader">Use</span>
-            <span id="usesDetail" class="content"></span>
-            <div class="crossLineThick"></div>
+            <span class="subHeader">Use</span><br>
+            <span id="usesDetail_1" class="content"></span>
+            <div class="crossLineThick" id="warningCrossLine"></div>
             
             <span class="subHeader">Warnings</span><br>
             <span id="forWhatDetail" class="warningDetail subSection"></span>
@@ -393,15 +440,15 @@
             <span id="stdHeader" class="warningHeader subSection" >Sexually transmitted diseases (STDs) alert</span>
             <span id="stdDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
-            <span id="notuseHeader" class="warningHeader subSection">Do not use</span>
-            <span id="notuseDetail" class="warningDetail content"></span>
-            <div class="crossLineThin"></div>
-            <span id="youhaveHeader" class="warningHeader subSection">Ask a doctor before use if you have</span>
-            <span id="youhaveDetail" class="warningDetail content"></span>
-            <div class="crossLineThin"></div>
-            <span id="childhaveHeader" class="warningHeader subSection">Ask a doctor before use if the child has</span>
-            <span id="childhaveDetail" class="warningDetail content"></span>
-            <div class="crossLineThin"></div>
+            <span id="notuseHeader" class="warningHeader subSection">Do not use</span><br>
+            <span id="notuseDetail_1" class="warningDetail content"></span>
+            <div class="crossLineThin" id="askDoctorCrossLine"></div>
+            <span id="youhaveHeader" class="warningHeader subSection">Ask a doctor before use if you have</span><br>
+            <span id="youhaveDetail_1" class="warningDetail content"></span>
+            <div class="crossLineThin" id="ifYourChildHasCrossLine"></div>
+            <span id="childhaveHeader" class="warningHeader subSection">Ask a doctor before use if the child has</span><br>
+            <span id="childhaveDetail_1" class="warningDetail content"></span>
+            <div class="crossLineThin" id="youareCrossLine"></div>
             <span id="youareHeader" class="warningHeader subSection">Ask a doctor or pharmacist before use if you are</span>
             <span id="youareDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
@@ -411,9 +458,9 @@
             <span id="whenUsingThisHeader" class="warningHeader subSection">When using this product</span>
             <span id="whenUsingThisDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
-            <span id="stopUseHeader" class="warningHeader subSection">Stop use and ask a doctor if</span>
-            <span id="stopUseDetail" class="warningDetail content"></span>
-            <div class="crossLineThin"></div>
+            <span id="stopUseHeader" class="warningHeader subSection">Stop use and ask a doctor if</span><br>
+            <span id="stopUseDetail_1" class="warningDetail content"></span>
+            <div class="crossLineThin" id="pregnantCrossLine"></div>
             <span id="pregnantHeader" class="warningHeader subSection">If pregnant or breast-feeding</span>
             <span id="pregnantDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
@@ -422,8 +469,11 @@
             
             <div class="crossLineThick"></div>
             <span class="subHeader">Directions</span><br>
-            <span id="directionsDetail" class="content"></span>
-            <div class="crossLineThick"></div>
+            <span id="directionsDetail_1" class="content"></span>
+            <div class="crossLineThick" id="otherCrossLine"></div>
+            <span class="subHeader">Other information</span><br>
+            <span id="otherDetail_1" class="content"></span>
+            <div class="crossLineThick" id="inActiveCrossLine"></div>
             <span class="subHeader" id="inActiveHeader">Inactive Ingredients</span>
             <span id="inActiveDetail" class="warningDetail content"></span>
           </div>

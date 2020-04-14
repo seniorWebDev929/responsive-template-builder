@@ -12,6 +12,13 @@ var color = "#000000";
 var ingredientCounter = 1;
 var checkedForWhat = false;
 var thickness = 1;
+var usesCounter = 1;
+var doNotUseCounter = 1;
+var youhaveCounter = 1;
+var childhaveCounter = 1;
+var stopUseCounter = 1;
+var directionsCounter = 1;
+var otherCounter = 1;
 
 function refreshPreview() {
   $("#templatePreview").css(
@@ -324,7 +331,6 @@ $(document).ready(function () {
   });
 
   $(document).on("click", ".removeIngredient", function(e) {
-    console.log("aaaa")
     var counter = e.target.id.split("_")[1];
     $(this).parent().parent()[0].remove();
     $(".activeIngredientDetail, .purposeDetail").each(function(index) {
@@ -337,8 +343,156 @@ $(document).ready(function () {
     })
   });
 
-  $("#uses").bind("input", function(e){
-    $("#usesDetail").text(e.target.value);
+  $("#usesAdd").click(function() {
+    usesCounter++;
+    $("#usesList").append(`
+      <div class="row" id="uses_` + usesCounter + `">
+        <input type="text" class="uses" />
+        <i class="fa fa-minus-square-o removeBtn removeUses"></i>
+      </div>
+    `);
+    $(`<br><span id="usesDetail_`+usesCounter+`" class="content"></span>`).insertBefore("#warningCrossLine");
+  });
+
+  $(document).on("input", ".uses", function(e){
+    var counter = $(this).parent().attr("id").split("_")[1];
+    $("#usesDetail_"+counter).text(e.target.value);
+  });
+
+  $(document).on("click", ".removeUses", function(e) {
+    var counter = $(this).parent().attr("id").split("_")[1];
+    var detail = $("#usesDetail_"+counter);
+    detail.prev().remove();
+    detail.remove();
+    $(this).parent().remove();
+  });
+
+  $("#directionsAdd").click(function() {
+    directionsCounter++;
+    $("#directionsList").append(`
+      <div class="row" id="directions_` + directionsCounter + `">
+        <input type="text" class="directions" />
+        <i class="fa fa-minus-square-o removeBtn removeDirections"></i>
+      </div>
+    `);
+    $(`<br><span id="directionsDetail_`+directionsCounter+`" class="content"></span>`).insertBefore("#otherCrossLine");
+  });
+
+  $(document).on("input", ".directions", function(e){
+    var counter = $(this).parent().attr("id").split("_")[1];
+    $("#directionsDetail_"+counter).text(e.target.value);
+  });
+
+  $(document).on("click", ".removeDirections", function(e) {
+    var counter = $(this).parent().attr("id").split("_")[1];
+    var detail = $("#directionsDetail_"+counter);
+    detail.prev().remove();
+    detail.remove();
+    $(this).parent().remove();
+  });
+
+  $("#otherAdd").click(function() {
+    otherCounter++;
+    $("#otherList").append(`
+      <div class="row" id="other_` + otherCounter + `">
+        <input type="text" class="other" />
+        <i class="fa fa-minus-square-o removeBtn removeOther"></i>
+      </div>
+    `);
+    $(`<br><span id="otherDetail_`+otherCounter+`" class="content"></span>`).insertBefore("#inActiveCrossLine");
+  });
+
+  $(document).on("input", ".other", function(e){
+    var counter = $(this).parent().attr("id").split("_")[1];
+    $("#otherDetail_"+counter).text(e.target.value);
+  });
+
+  $(document).on("click", ".removeOther", function(e) {
+    var counter = $(this).parent().attr("id").split("_")[1];
+    var detail = $("#otherDetail_"+counter);
+    detail.prev().remove();
+    detail.remove();
+    $(this).parent().remove();
+  });
+
+  $("#doNotUseAdd").click(function() {
+    doNotUseCounter++;
+    $("#doNotUseList").append(`
+      <div class="row" id="doNotUse_`+doNotUseCounter+`">
+        <input type="text" class="row doNotUseContent"/>
+        <i class="fa fa-minus-square-o removeDoNotUse" ></i>
+      </div>
+    `);
+    $(`<br><span id="notuseDetail_`+doNotUseCounter+`" class="warningDetail content"></span>`).insertBefore("#askDoctorCrossLine");
+    $("#notuseDetail_"+doNotUseCounter).show();
+  });
+
+  $(document).on("click", ".removeDoNotUse", function(e) {
+    var counter = $(this).parent().attr("id").split("_")[1];
+    var detail = $("#notuseDetail_"+counter);
+    detail.prev().remove();
+    detail.remove();
+    $(this).parent().remove();
+  });
+
+  $("#youhaveAdd").click(function() {
+    youhaveCounter++;
+    $("#youhaveList").append(`
+      <div class="row" id="youhave_`+youhaveCounter+`">
+        <input type="text" class="row youhaveContent"/>
+        <i class="fa fa-minus-square-o removeYouHave" ></i>
+      </div>
+    `);
+    $(`<br><span id="youhaveDetail_`+youhaveCounter+`" class="warningDetail content"></span>`).insertBefore("#ifYourChildHasCrossLine");
+    $("#youhaveDetail_"+youhaveCounter).show();
+  });
+
+  $(document).on("click", ".removeYouHave", function(e) {
+    var counter = $(this).parent().attr("id").split("_")[1];
+    var detail = $("#youhaveDetail_"+counter);
+    detail.prev().remove();
+    detail.remove();
+    $(this).parent().remove();
+  });
+
+  $("#childhaveAdd").click(function() {
+    childhaveCounter++;
+    $("#childhaveList").append(`
+      <div class="row" id="childhave_`+childhaveCounter+`">
+        <input type="text" class="row childhaveContent"/>
+        <i class="fa fa-minus-square-o removeChildHave" ></i>
+      </div>
+    `);
+    $(`<br><span id="childhaveDetail_`+childhaveCounter+`" class="warningDetail content"></span>`).insertBefore("#youareCrossLine");
+    $("#childhaveDetail_"+childhaveCounter).show();
+  });
+
+  $(document).on("click", ".removeChildHave", function(e) {
+    var counter = $(this).parent().attr("id").split("_")[1];
+    var detail = $("#childhaveDetail_"+counter);
+    detail.prev().remove();
+    detail.remove();
+    $(this).parent().remove();
+  });
+
+  $("#stopUseAdd").click(function() {
+    stopUseCounter++;
+    $("#stopUseList").append(`
+      <div class="row" id="stopUse_`+stopUseCounter+`">
+        <input type="text" class="row stopUseContent"/>
+        <i class="fa fa-minus-square-o removeStopUse" ></i>
+      </div>
+    `);
+    $(`<br><span id="stopUseDetail_`+stopUseCounter+`" class="warningDetail content"></span>`).insertBefore("#pregnantCrossLine");
+    $("#stopUseDetail_"+stopUseCounter).show();
+  });
+
+  $(document).on("click", ".removeStopUse", function(e) {
+    var counter = $(this).parent().attr("id").split("_")[1];
+    var detail = $("#stopUseDetail_"+counter);
+    detail.prev().remove();
+    detail.remove();
+    $(this).parent().remove();
   });
 
   $("#forWhat").click(function() {
@@ -538,36 +692,54 @@ $(document).ready(function () {
 
   $("#notuse").click(function() {
     if($(this).prop("checked") == true) {
-      $("#notuseContent").removeAttr("hidden");
+      $("#doNotUseList").removeAttr("hidden");
+      $("#doNotUseAdd").removeAttr("hidden");
       $("#notuseHeader").show();
-      $("#notuseDetail").show();
+      for(let i=1; i<= doNotUseCounter; i++)
+        $("#notuseDetail_"+i).show();
       $(".crossLineThin").eq(10).show();
     }
     else if($(this).prop("checked") == false) {
-      $("#notuseContent").attr("hidden", true);
+      $("#doNotUseList").attr("hidden", true);
+      $("#doNotUseAdd").attr("hidden", true);
       $("#notuseHeader").hide();
-      $("#notuseDetail").hide();
+      for(let i=1; i<= doNotUseCounter; i++){
+        $("#notuseDetail_"+i).hide();
+        $("#notuseDetail_"+i).prev().hide();
+      }
       $(".crossLineThin").eq(10).hide();
     }
   });
 
-  $("#notuseContent").bind("input", function(e){
-    $("#notuseDetail").text(e.target.value);
+  $(document).on("input", ".doNotUseContent", function(e){
+    var counter = $(this).parent().attr("id").split("_")[1];
+    $("#notuseDetail_"+counter).text(e.target.value);
   });
 
   $("#youhave").click(function() {
     if($(this).prop("checked") == true) {
-      $("#youhaveContent").removeAttr("hidden");
+      $("#youhaveList").removeAttr("hidden");
+      $("#youhaveAdd").removeAttr("hidden");
       $("#youhaveHeader").show();
-      $("#youhaveDetail").show();
+      for(let i=1; i<= youhaveCounter; i++)
+        $("#youhaveDetail_"+i).show();
       $(".crossLineThin").eq(11).show();
     }
     else if($(this).prop("checked") == false) {
-      $("#youhaveContent").attr("hidden", true);
+      $("#youhaveList").attr("hidden", true);
+      $("#youhaveAdd").attr("hidden", true);
       $("#youhaveHeader").hide();
-      $("#youhaveDetail").hide();
+      for(let i=1; i<= youhaveCounter; i++){
+        $("#youhaveDetail_"+i).hide();
+        $("#youhaveDetail_"+i).prev().hide();
+      }
       $(".crossLineThin").eq(11).hide();
     }
+  });
+
+  $(document).on("input", ".youhaveContent", function(e){
+    var counter = $(this).parent().attr("id").split("_")[1];
+    $("#youhaveDetail_"+counter).text(e.target.value);
   });
 
   $("#youhaveContent").bind("input", function(e){
@@ -576,21 +748,28 @@ $(document).ready(function () {
 
   $("#childhave").click(function() {
     if($(this).prop("checked") == true) {
-      $("#childhaveContent").removeAttr("hidden");
+      $("#childhaveList").removeAttr("hidden");
+      $("#childhaveAdd").removeAttr("hidden");
       $("#childhaveHeader").show();
-      $("#childhaveDetail").show();
+      for(let i=1; i<= childhaveCounter; i++)
+        $("#childhaveDetail_"+i).show();
       $(".crossLineThin").eq(12).show();
     }
     else if($(this).prop("checked") == false) {
-      $("#childhaveContent").attr("hidden", true);
+      $("#childhaveList").attr("hidden", true);
+      $("#childhaveAdd").attr("hidden", true);
       $("#childhaveHeader").hide();
-      $("#childhaveDetail").hide();
+      for(let i=1; i<= childhaveCounter; i++){
+        $("#childhaveDetail_"+i).hide();
+        $("#childhaveDetail_"+i).prev().hide();
+      }
       $(".crossLineThin").eq(12).hide();
     }
   });
 
-  $("#childhaveContent").bind("input", function(e){
-    $("#childhaveDetail").text(e.target.value);
+  $(document).on("input", ".childhaveContent", function(e){
+    var counter = $(this).parent().attr("id").split("_")[1];
+    $("#childhaveDetail_"+counter).text(e.target.value);
   });
 
   $("#youare").click(function() {
@@ -652,21 +831,28 @@ $(document).ready(function () {
 
   $("#stopUse").click(function() {
     if($(this).prop("checked") == true) {
-      $("#stopUseContent").removeAttr("hidden");
+      $("#stopUseList").removeAttr("hidden");
+      $("#stopUseAdd").removeAttr("hidden");
       $("#stopUseHeader").show();
-      $("#stopUseDetail").show();
+      for(let i=1; i<= stopUseCounter; i++)
+        $("#stopUseDetail_"+i).show();
       $(".crossLineThin").eq(16).show();
     }
     else if($(this).prop("checked") == false) {
-      $("#stopUseContent").attr("hidden", true);
+      $("#stopUseList").attr("hidden", true);
+      $("#stopUseAdd").attr("hidden", true);
       $("#stopUseHeader").hide();
-      $("#stopUseDetail").hide();
+      for(let i=1; i<= stopUseCounter; i++){
+        $("#stopUseDetail_"+i).hide();
+        $("#stopUseDetail_"+i).prev().hide();
+      }
       $(".crossLineThin").eq(16).hide();
     }
   });
 
-  $("#stopUseContent").bind("input", function(e){
-    $("#stopUseDetail").text(e.target.value);
+  $(document).on("input", ".stopUseContent", function(e){
+    var counter = $(this).parent().attr("id").split("_")[1];
+    $("#stopUseDetail_"+counter).text(e.target.value);
   });
 
   $("#pregnant").click(function() {
@@ -724,7 +910,4 @@ $(document).ready(function () {
     $("#inActiveDetail").text(e.target.value);
   });
 
-  $("#directions").bind("input", function(e) {
-    $("#directionsDetail").text(e.target.value);
-  })
 });

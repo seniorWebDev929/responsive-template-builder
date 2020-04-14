@@ -1,6 +1,8 @@
 #chooseFormat {
   max-width: 100%;
-  margin: 85px;
+  margin: 10px;
+  margin-top:45px;
+  padding-left:10%;
 }
 
 /* #chooseSection {
@@ -82,9 +84,9 @@ h1 {
   width: 55px;
 }
 
-#templatePreviewContainer {
+/* #templatePreviewContainer {
   padding-left: 10%;
-}
+} */
 
 #templatePreview {
   border: 1px solid black;
@@ -300,4 +302,52 @@ h1 {
 
 #inActiveHeader {
   display: none;
+}
+
+.addBtn {
+  margin-left: 7px;
+}
+
+#usesList .row {
+  display: flex;
+  align-items: baseline;
+}
+
+#directionsList .row {
+  align-items: baseline;
+}
+.removeBtn {
+  margin-left: 7px;
+}
+
+#doNotUseList .row {
+  align-items: baseline;
+}
+
+.removeDoNotUse {
+  margin-left: 7px;
+}
+
+#youhaveList .row {
+  align-items: baseline;
+}
+
+.removeYouHave {
+  margin-left: 7px;
+}
+
+#childhaveList .row {
+  align-items: baseline;
+}
+
+.removeChildHave {
+  margin-left: 7px;
+}
+
+#stopUseList .row {
+  align-items: baseline;
+}
+
+.removeStopUse {
+  margin-left: 7px;
 }
