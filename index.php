@@ -94,6 +94,14 @@
                 <input type="number" name="thickness" class="propertyValue" value="1" min="0" max="20" />
               </div>
             </div>
+            <div class="row property">
+              <div class="col-9">
+                <label class="propertyHeader">Padding of Content</label>
+              </div>
+              <div class="col-3">
+                <input type="number" name="padding" class="propertyValue" value="0" min="0" max="100" />
+              </div>
+            </div>
             <div id="fontSetting">
               <div class="row" id="mainHeader_FontSetting" style="justify-content: space-between;">
                 <label class="propertyHeader">Header Font, Size, Style</label>
@@ -136,7 +144,7 @@
                     <option>Courier</option>
                     <option>Lucida Console</option>
                   </select>
-                  <input class="fontSizeSetting" type="number" value="25" min="1" max="50"/>
+                  <input class="fontSizeSetting" type="number" value="20" min="1" max="50"/>
                   <div class="bold" bolded="true">B</div>
                   <div class="italic" >I</div>
                 </div>
@@ -414,31 +422,31 @@
             <span class="subHeader">Warnings</span><br>
             <span id="forWhatDetail" class="warningDetail subSection"></span>
             <div class="crossLineThin" ></div>
-            <span id="syndromeHeader" class="warningHeader subSection">Reye's syndrome warning</span>
+            <span id="syndromeHeader" class="warningHeader subSection">Reye's syndrome warning</span><br>
             <span id="syndromeDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
-            <span id="allergyHeader" class="warningHeader subSection">Allergy Alert</span>
+            <span id="allergyHeader" class="warningHeader subSection">Allergy Alert</span><br>
             <span id="allergyDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
-            <span id="flammableHeader" class="warningHeader subSection">Flammable</span>
+            <span id="flammableHeader" class="warningHeader subSection">Flammable</span><br>
             <span id="flammableDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
-            <span id="chokingHeader" class="warningHeader subSection">Choking</span>
+            <span id="chokingHeader" class="warningHeader subSection">Choking</span><br>
             <span id="chokingDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
-            <span id="alcholeHeader" class="warningHeader subSection">Alchole Warning</span>
+            <span id="alcholeHeader" class="warningHeader subSection">Alchole Warning</span><br>
             <span id="alcholeDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
-            <span id="stomachHeader" class="warningHeader subSection">Stomach bleeding warning</span>
+            <span id="stomachHeader" class="warningHeader subSection">Stomach bleeding warning</span><br>
             <span id="stomachDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
-            <span id="soreHeader" class="warningHeader subSection">Sore throat warning</span>
+            <span id="soreHeader" class="warningHeader subSection">Sore throat warning</span><br>
             <span id="soreDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
-            <span id="dosageHeader" class="warningHeader subSection">Dosage warning</span>
+            <span id="dosageHeader" class="warningHeader subSection">Dosage warning</span><br>
             <span id="dosageDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
-            <span id="stdHeader" class="warningHeader subSection" >Sexually transmitted diseases (STDs) alert</span>
+            <span id="stdHeader" class="warningHeader subSection" >Sexually transmitted diseases (STDs) alert</span><br>
             <span id="stdDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
             <span id="notuseHeader" class="warningHeader subSection">Do not use</span><br>
@@ -450,22 +458,22 @@
             <span id="childhaveHeader" class="warningHeader subSection">Ask a doctor before use if the child has</span><br>
             <span id="childhaveDetail_1" class="warningDetail content"></span>
             <div class="crossLineThin" id="youareCrossLine"></div>
-            <span id="youareHeader" class="warningHeader subSection">Ask a doctor or pharmacist before use if you are</span>
+            <span id="youareHeader" class="warningHeader subSection">Ask a doctor or pharmacist before use if you are</span><br>
             <span id="youareDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
-            <span id="childisHeader" class="warningHeader subSection">Ask a doctor or pharmacist before use if the child is</span>
+            <span id="childisHeader" class="warningHeader subSection">Ask a doctor or pharmacist before use if the child is</span><br>
             <span id="childisDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
-            <span id="whenUsingThisHeader" class="warningHeader subSection">When using this product</span>
+            <span id="whenUsingThisHeader" class="warningHeader subSection">When using this product</span><br>
             <span id="whenUsingThisDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
             <span id="stopUseHeader" class="warningHeader subSection">Stop use and ask a doctor if</span><br>
             <span id="stopUseDetail_1" class="warningDetail content"></span>
             <div class="crossLineThin" id="pregnantCrossLine"></div>
-            <span id="pregnantHeader" class="warningHeader subSection">If pregnant or breast-feeding</span>
+            <span id="pregnantHeader" class="warningHeader subSection">If pregnant or breast-feeding</span><br>
             <span id="pregnantDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
-            <span id="keepOutHeader" class="warningHeader subSection">Keep out of reach of children</span>
+            <span id="keepOutHeader" class="warningHeader subSection">Keep out of reach of children</span><br>
             <span id="keepOutDetail" class="warningDetail content"></span>
             
             <div class="crossLineThick"></div>
