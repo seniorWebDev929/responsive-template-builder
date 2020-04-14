@@ -211,13 +211,13 @@ h1 {
 
 #purposeHeader {
   display: none;
-  position: relative;
-  right: -35%;
+  position: absolute;
+  left: 393.09px;
 }
 
 .purposeDetail {
-  position: relative;
-  right: -35%;
+  position: absolute;
+  left: 368.663px;
   background: white;
 }
 

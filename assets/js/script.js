@@ -63,6 +63,57 @@ function refreshPreview() {
   $("#templatePreview").css("height", height + "px");
   $("#templatePreview").css("width", width + "px");
   $("#templatePreview").css("border-color", color);
+  calculatePurposePosition();
+  calculatePurposeDetailPosition();
+  clearDottedLine();
+  addDottedLine();
+}
+
+function calculatePurposePosition() {
+  var purposeHeaderWidth = $("#purposeHeader").width();
+  var topOffset = $("#activeIngredientHeader").offset().top - $("#templatePreview").offset().top;
+  var top = radiusTopRight2 * height / 100;
+  var left = radiusTopRight1 * width / 100;
+  var offsetFromRight;
+  if(top > topOffset){
+    offsetFromRight = left*(top - topOffset)/(2*top);
+  }
+  else {
+    offsetFromRight = 0;
+  }
+  var offsetFromLeft =  width - offsetFromRight - purposeHeaderWidth;
+  $("#purposeHeader").css("left", offsetFromLeft);
+};
+
+function calculatePurposeDetailPosition() {
+  for(let i = 1; i<=ingredientCounter; i++) {
+    var purposeDetailWidth = $("#purposeDetail_"+i).width();
+    var topOffset = $("#activeIngredientDetail_"+i).offset().top - $("#templatePreview").offset().top;
+    var top = radiusTopRight2 * height / 100;
+    var left = radiusTopRight1 * width / 100;
+    var offsetFromRight;
+    if(top > topOffset){
+      offsetFromRight = left*(top - topOffset)/(2*top);
+    }
+    else {
+      offsetFromRight = 0;
+    }
+    var offsetFromLeft =  width - offsetFromRight - purposeDetailWidth;
+    $("#purposeDetail_"+i).css("left", offsetFromLeft);
+  }
+}
+
+function addDottedLine(){
+  for(let i = 1 ; i<=ingredientCounter; i++){
+    // clearDottedLine();
+    while($("#dottedLine_"+i).width() + $("#activeIngredientDetail_"+i).width() < parseFloat($("#purposeDetail_"+i).css("left"))){
+      $("#dottedLine_"+i).append(".");
+    }
+  }
+}
+
+function clearDottedLine() {
+  $(".dottedLine").text("");
 }
 
 $(document).ready(function () {
@@ -292,23 +343,30 @@ $(document).ready(function () {
       $("input[name='activeIngredientPurpose']").removeAttr("hidden");
       $("#purposeHeader").show();
       $(".purposeDetail").show();
+      addDottedLine();
     }
     else if($(this).prop("checked") == false) {
       $(".bi-three-dots").attr("hidden", true);
       $("input[name='activeIngredientPurpose']").attr("hidden", true);
       $("#purposeHeader").hide();
       $(".purposeDetail").hide();
+      clearDottedLine();
     }
   });
 
   $(document).on("input","input[name='activeIngredient']", function(e) {
     var order = e.target.id.split("_")[1];
     $("#activeIngredientDetail_" + order).text(e.target.value);
+    
   });
 
   $(document).on("input","input[name='activeIngredientPurpose']", function(e) {
     var order = e.target.id.split("_")[1];
     $("#purposeDetail_" + order).text(e.target.value);
+    calculatePurposeDetailPosition();
+    // clearDottedLine();
+    // console.log("Aaa");
+    // addDottedLine();
   });
 
   $("#addPurpose").click(function() {
@@ -327,6 +385,7 @@ $(document).ready(function () {
     `);
 
     $(`<span class="activeIngredientDetail" id="activeIngredientDetail_`+ ingredientCounter +`"></span>
+    <span class="dottedLine" id="dottedLine_`+ingredientCounter+`"></span>
     <span class="purposeDetail" id="purposeDetail_`+ ingredientCounter +`"></span><br>`).insertBefore("#useCrossLine");
   });
 

@@ -404,6 +404,7 @@
             <span class="subHeader" id="activeIngredientHeader">Active Ingredient</span>
             <span class="subHeader" id="purposeHeader">Purpose</span><br>
             <span class="activeIngredientDetail" id="activeIngredientDetail_1"></span>
+            <span class="dottedLine" id="dottedLine_1"></span>
             <span class="purposeDetail" id="purposeDetail_1"></span><br>
             <div class="crossLineThick" id="useCrossLine"></div>
             <span class="subHeader">Use</span><br>
