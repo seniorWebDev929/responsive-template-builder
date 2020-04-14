@@ -14,7 +14,7 @@
   <body>
     <div id="chooseFormat">
       <div class="row">
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
           <div class="row sectionTitle">
             <label>Template Settings</label>
             <i class="fa fa-angle-right" id="settingCollapseRight"></i>
@@ -393,7 +393,7 @@
             <input id="inActiveContent" type="text" class="row" hidden />
           </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" id="templatePreviewContainer">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" id="templatePreviewContainer">
           <div id="templatePreview">
             <div class="shape top left"></div>
             <div class="shape top right"></div>
