@@ -369,7 +369,6 @@ $(document).ready(function () {
     $("#purposeDetail_" + order).text(e.target.value);
     calculatePurposeDetailPosition();
     // clearDottedLine();
-    // console.log("Aaa");
     // addDottedLine();
   });
 
