@@ -63,7 +63,7 @@
                 <label class="propertyContent">Mesure the distance between the top circumference and bottomcircumference</label>
               </div>
               <div class="col-3">
-                <input type="number" name="height" class="propertyValue" value="500" />
+                <input type="number" name="height" class="propertyValue" value="800" />
               </div>
             </div>
             <div class="property row">
@@ -72,7 +72,7 @@
                 <label class="propertyContent">Mesure the distance between the left circumference and rightcircumference</label>
               </div>
               <div class="col-3">
-                <input type="number" name="width" class="propertyValue" value="500" />
+                <input type="number" name="width" class="propertyValue" value="700" />
               </div>
             </div>
   
@@ -411,9 +411,9 @@
             <div class="crossLineThin" style="display: block;"></div>
             <span class="subHeader" id="activeIngredientHeader">Active Ingredient</span>
             <span class="subHeader" id="purposeHeader">Purpose</span><br>
-            <span class="activeIngredientDetail" id="activeIngredientDetail_1"></span>
+            <span class="activeIngredientDetail content" id="activeIngredientDetail_1"></span>
             <span class="dottedLine" id="dottedLine_1"></span>
-            <span class="purposeDetail" id="purposeDetail_1"></span><br>
+            <span class="purposeDetail content" id="purposeDetail_1"></span><br>
             <div class="crossLineThick" id="useCrossLine"></div>
             <span class="subHeader">Use</span><br>
             <span id="usesDetail_1" class="content"></span>

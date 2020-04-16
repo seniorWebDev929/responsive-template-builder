@@ -6,8 +6,8 @@ var radiusBottomRight1 = 0;
 var radiusBottomRight2 = 100;
 var radiusBottomLeft1 = 100;
 var radiusBottomLeft2 = 0;
-var height = 500;
-var width = 500;
+var height = 800;
+var width = 700;
 var color = "#000000";
 var ingredientCounter = 1;
 var checkedForWhat = false;
@@ -46,7 +46,10 @@ function refreshPreview() {
   $("#templatePreview").css("width", width + "px");
   $("#templatePreview").css("border-color", color);
   $("#templatePreview").css("border-width", thickness);
-  $("#templatePreview").css("padding", padding+"px");
+  $(".crossLineThick").css("margin-top", padding+"px");
+  $(".crossLineThick").css("margin-bottom", padding+"px");
+  $(".mainHeader, .subHeader, .crossLineThin, .subSection, .content").css("margin-left", padding+"px");
+  $(".mainHeader, .subHeader, .crossLineThin, .subSection, .content").css("margin-right", padding+"px")
 
   $("#dotRounded").css("height", height);
   $("#dotRounded").css("width", width);
@@ -68,8 +71,7 @@ function refreshPreview() {
   $("#templatePreview").css("border-color", color);
   calculatePurposePosition();
   calculatePurposeDetailPosition();
-  // $(".dottedLine").text();
-  // addDottedLine();
+  addDottedLine();
 }
 
 function calculatePurposePosition() {
@@ -90,33 +92,41 @@ function calculatePurposePosition() {
 
 function calculatePurposeDetailPosition() {
   for(let i = 1; i<=ingredientCounter; i++) {
-    var purposeDetailWidth = $("#purposeDetail_"+i).width();
-    var topOffset = $("#activeIngredientDetail_"+i).offset().top - $("#templatePreview").offset().top;
-    var top = radiusTopRight2 * height / 100;
-    var left = radiusTopRight1 * width / 100;
-    var offsetFromRight;
-    if(top > topOffset){
-      offsetFromRight = left*(top - topOffset)/(2*top);
+    if($("#activeIngredientDetail_"+i)[0]){
+      var purposeDetailWidth = $("#purposeDetail_"+i).width();
+      var topOffset = $("#activeIngredientDetail_"+i).offset().top - $("#templatePreview").offset().top;
+      var top = radiusTopRight2 * height / 100;
+      var left = radiusTopRight1 * width / 100;
+      var offsetFromRight;
+      if(top > topOffset){
+        offsetFromRight = left*(top - topOffset)/(2*top);
+      }
+      else {
+        offsetFromRight = 0;
+      }
+      var offsetFromLeft =  width - offsetFromRight - purposeDetailWidth;
+      $("#purposeDetail_"+i).css("left", offsetFromLeft);
+    } else {
+      continue;
     }
-    else {
-      offsetFromRight = 0;
-    }
-    var offsetFromLeft =  width - offsetFromRight - purposeDetailWidth;
-    $("#purposeDetail_"+i).css("left", offsetFromLeft);
   }
 }
 
 function addDottedLine(){
   for(let i = 1 ; i<=ingredientCounter; i++){
-    
-    if($("#activeIngredientDetail_"+i)){
-      clearDottedLine(i);
-      while($("#dottedLine_"+i).width() + $("#activeIngredientDetail_"+i).width() < parseFloat($("#purposeDetail_"+i).css("left"))){
-        $("#dottedLine_"+i).append(".");
-      }
+    if($("#activeIngredientDetail_"+i)[0]){
+      addSpecificDottedLine(i)
     }
     
   }
+}
+
+function addSpecificDottedLine(order) {
+  clearDottedLine(order);
+  // while($("#dottedLine_"+order).width() + $("#activeIngredientDetail_"+order).width() < parseFloat($("#purposeDetail_"+order).css("left"))){
+  //   // console.log($("#dottedLine_"+i).width());
+  //   $("#dottedLine_"+order).append(".");
+  // }
 }
 
 function clearDottedLine(i) {
@@ -353,6 +363,8 @@ $(document).ready(function () {
       purposeClicked = true;
       $(".bi-three-dots").removeAttr("hidden");
       $("input[name='activeIngredientPurpose']").removeAttr("hidden");
+      calculatePurposePosition();
+      // calculatePurposeDetailPosition();
       $("#purposeHeader").show();
       $(".purposeDetail").show();
       addDottedLine();
@@ -370,15 +382,15 @@ $(document).ready(function () {
   $(document).on("input","input[name='activeIngredient']", function(e) {
     var order = e.target.id.split("_")[1];
     $("#activeIngredientDetail_" + order).text(e.target.value);
-    
+    addSpecificDottedLine(order);
   });
 
   $(document).on("input","input[name='activeIngredientPurpose']", function(e) {
     var order = e.target.id.split("_")[1];
     $("#purposeDetail_" + order).text(e.target.value);
     calculatePurposeDetailPosition();
-    // clearDottedLine();
-    // addDottedLine();
+    // clearDottedLine(order);
+    addSpecificDottedLine(order);
   });
 
   $("#addPurpose").click(function() {
@@ -396,9 +408,9 @@ $(document).ready(function () {
     </div>
     `);
     
-    $(`<span class="activeIngredientDetail" id="activeIngredientDetail_`+ ingredientCounter +`"></span>
+    $(`<span class="activeIngredientDetail content" id="activeIngredientDetail_`+ ingredientCounter +`"></span>
     <span class="dottedLine" id="dottedLine_`+ingredientCounter+`"></span>
-    <span class="purposeDetail" id="purposeDetail_`+ ingredientCounter +`"></span><br>`).insertBefore("#useCrossLine");
+    <span class="purposeDetail content" id="purposeDetail_`+ ingredientCounter +`"></span><br>`).insertBefore("#useCrossLine");
     if(purposeClicked) {
       $(".bi-three-dots").removeAttr("hidden");
       $("#activeIngredientPurpose_"+ingredientCounter).removeAttr("hidden");

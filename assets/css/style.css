@@ -90,8 +90,8 @@ h1 {
 
 #templatePreview {
   border: 1px solid black;
-  height: 500px;
-  width: 500px;
+  height: 800px;
+  width: 700px;
   padding: 0;
   text-align: justify;
   overflow: hidden;
@@ -125,9 +125,9 @@ h1 {
 
 #dotRounded {
   position: relative;
-  top: -500px;
-  width: 500px;
-  height: 500px;
+  top: -800px;
+  width: 700px;
+  height: 800px;
   border: 1px dashed black;
 }
 
@@ -152,16 +152,16 @@ h1 {
 
 #movableTopRight {
   top: -8px;
-  left: 492px;
+  left: 692px;
 }
 
 #movableBottomRight {
-  top: 492px;
-  left: 492px;
+  top: 792px;
+  left: 692px;
 }
 
 #movableBottomLeft {
-  top: 492px;
+  top: 792px;
   left: -8px;
 }
 
