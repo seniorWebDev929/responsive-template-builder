@@ -21,7 +21,31 @@ var directionsCounter = 1;
 var otherCounter = 1;
 var padding = 0;
 var purposeClicked = false;
+var fontSize = {
+  "mainHeader": 28,
+  "subHeader": 20,
+  "subSection": 18,
+  "content": 18
+}
 
+var fontFamily = {
+  "mainHeader": "Georgia",
+  "subHeader": "Georgia",
+  "subSection": "Georgia",
+  "content": "Georgia"
+}
+var bolded = {
+  "mainHeader": "bold",
+  "subHeader": "bold",
+  "subSection": "bold",
+  "content": "400"
+}
+var italiced = {
+  "mainHeader": "normal",
+  "subHeader": "normal",
+  "subSection": "normal",
+  "content": "normal"
+}
 function refreshPreview() {
   $("#templatePreview").css(
     "border-radius",
@@ -69,6 +93,22 @@ function refreshPreview() {
   $("#templatePreview").css("height", height + "px");
   $("#templatePreview").css("width", width + "px");
   $("#templatePreview").css("border-color", color);
+  $(".mainHeader").css("font-family", fontFamily.mainHeader);
+  $(".subHeader").css("font-family", fontFamily.subHeader);
+  $(".subSection").css("font-family", fontFamily.subSection);
+  $(".content").css("font-family", fontFamily.content);
+  $(".mainHeader").css("font-size", fontSize.mainHeader + "px");
+  $(".subHeader").css("font-size", fontSize.subHeader + "px");
+  $(".subSection").css("font-size", fontSize.subSection + "px");
+  $(".content").css("font-size", fontSize.content + "px");
+  $(".mainHeader").css("font-weight", bolded.mainHeader);
+  $(".subHeader").css("font-weight", bolded.subHeader);
+  $(".subSection").css("font-weight", bolded.subSection);
+  $(".content").css("font-weight", bolded.content);
+  $(".mainHeader").css("font-style", italiced.mainHeader);
+  $(".subHeader").css("font-style", italiced.subHeader);
+  $(".subSection").css("font-style", italiced.subSection);
+  $(".content").css("font-style", italiced.content);
   calculatePurposePosition();
   calculatePurposeDetailPosition();
   addDottedLine();
@@ -324,37 +364,49 @@ $(document).ready(function () {
 
   $(".fontFamilySetting").change(function() {
     var selected = $(this).parent().parent()[0].id.split("_")[0];
-    $("."+selected).css("font-family", $(this).children("option:selected").val())
+    // $("."+selected).css("font-family", $(this).children("option:selected").val())
+    fontFamily[selected] = $(this).children("option:selected").val();
+    refreshPreview();
   });
 
   $(".fontSizeSetting").bind("input", function(e) {
     var selected = $(this).parent().parent()[0].id.split("_")[0];
-    $("."+selected).css("font-size", e.target.value + "px");
+    // $("."+selected).css("font-size", e.target.value + "px");
+    fontSize[selected] = e.target.value;
+    refreshPreview();
   });
 
   $(".bold").click(function(e) {
     var selected = $(this).parent().parent()[0].id.split("_")[0];
     if($(this).attr('bolded') == "true"){
-      $("."+selected).css("font-weight", "400");
+      // $("."+selected).css("font-weight", "400");
+      bolded[selected] = "400";
       $(this).removeAttr("bolded");
       $(this).css("border", "none");
+      refreshPreview();
     } else {
-      $("."+selected).css("font-weight", "bold");
-      $(this).attr("bolded","true");
+      // $("."+selected).css("font-weight", "bold");
+      bolded[selected] = true;
+      $(this).attr("bolded", "bold");
       $(this).css("border", "1px solid black");
+      refreshPreview();
     }
   });
 
   $(".italic").click(function(e) {
     var selected = $(this).parent().parent()[0].id.split("_")[0];
     if($(this).attr('italiced') == "true"){
-      $("."+selected).css("font-style", "normal");
+      // $("."+selected).css("font-style", "normal");
+      italiced[selected] = "normal";
       $(this).removeAttr("italiced");
       $(this).css("border", "none");
+      refreshPreview();
     } else {
-      $("."+selected).css("font-style", "italic");
-      $(this).attr("italiced","true");
+      // $("."+selected).css("font-style", "italic");
+      italiced[selected] = true;
+      $(this).attr("italiced","italic");
       $(this).css("border", "1px solid black");
+      refreshPreview();
     }
   });
 
@@ -382,15 +434,18 @@ $(document).ready(function () {
   $(document).on("input","input[name='activeIngredient']", function(e) {
     var order = e.target.id.split("_")[1];
     $("#activeIngredientDetail_" + order).text(e.target.value);
+    refreshPreview();
     addSpecificDottedLine(order);
   });
 
   $(document).on("input","input[name='activeIngredientPurpose']", function(e) {
     var order = e.target.id.split("_")[1];
     $("#purposeDetail_" + order).text(e.target.value);
+    
     calculatePurposeDetailPosition();
     // clearDottedLine(order);
     addSpecificDottedLine(order);
+    refreshPreview();
   });
 
   $("#addPurpose").click(function() {
@@ -447,6 +502,7 @@ $(document).ready(function () {
   $(document).on("input", ".uses", function(e){
     var counter = $(this).parent().attr("id").split("_")[1];
     $("#usesDetail_"+counter).text(e.target.value);
+    refreshPreview();
   });
 
   $(document).on("click", ".removeUses", function(e) {
@@ -466,11 +522,13 @@ $(document).ready(function () {
       </div>
     `);
     $(`<br><span id="directionsDetail_`+directionsCounter+`" class="content"></span>`).insertBefore("#otherCrossLine");
+    refreshPreview();
   });
 
   $(document).on("input", ".directions", function(e){
     var counter = $(this).parent().attr("id").split("_")[1];
     $("#directionsDetail_"+counter).text(e.target.value);
+    refreshPreview();
   });
 
   $(document).on("click", ".removeDirections", function(e) {
@@ -490,11 +548,13 @@ $(document).ready(function () {
       </div>
     `);
     $(`<br><span id="otherDetail_`+otherCounter+`" class="content"></span>`).insertBefore("#inActiveCrossLine");
+    refreshPreview();
   });
 
   $(document).on("input", ".other", function(e){
     var counter = $(this).parent().attr("id").split("_")[1];
     $("#otherDetail_"+counter).text(e.target.value);
+    refreshPreview();
   });
 
   $(document).on("click", ".removeOther", function(e) {
@@ -515,6 +575,7 @@ $(document).ready(function () {
     `);
     $(`<br><span id="notuseDetail_`+doNotUseCounter+`" class="warningDetail content"></span>`).insertBefore("#askDoctorCrossLine");
     $("#notuseDetail_"+doNotUseCounter).show();
+    refreshPreview();
   });
 
   $(document).on("click", ".removeDoNotUse", function(e) {
@@ -535,6 +596,7 @@ $(document).ready(function () {
     `);
     $(`<br><span id="youhaveDetail_`+youhaveCounter+`" class="warningDetail content"></span>`).insertBefore("#ifYourChildHasCrossLine");
     $("#youhaveDetail_"+youhaveCounter).show();
+    refreshPreview();
   });
 
   $(document).on("click", ".removeYouHave", function(e) {
@@ -555,6 +617,7 @@ $(document).ready(function () {
     `);
     $(`<br><span id="childhaveDetail_`+childhaveCounter+`" class="warningDetail content"></span>`).insertBefore("#youareCrossLine");
     $("#childhaveDetail_"+childhaveCounter).show();
+    refreshPreview();
   });
 
   $(document).on("click", ".removeChildHave", function(e) {
@@ -575,6 +638,7 @@ $(document).ready(function () {
     `);
     $(`<br><span id="stopUseDetail_`+stopUseCounter+`" class="warningDetail content"></span>`).insertBefore("#pregnantCrossLine");
     $("#stopUseDetail_"+stopUseCounter).show();
+    refreshPreview();
   });
 
   $(document).on("click", ".removeStopUse", function(e) {
@@ -583,6 +647,7 @@ $(document).ready(function () {
     detail.prev().remove();
     detail.remove();
     $(this).parent().remove();
+    refreshPreview();
   });
 
   $("#forWhat").click(function() {
@@ -591,11 +656,13 @@ $(document).ready(function () {
       checkedForWhat = true;
       $("#forWhatDetail").text("For External Use Only");
       $("#forWhatDetail").show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#forWhatContent").attr("hidden", true);
       checkedForWhat = false;
       $("#forWhatDetail").hide();
+      refreshPreview();
     }
   });
 
@@ -615,17 +682,20 @@ $(document).ready(function () {
       $("#syndromeHeader").show();
       $("#syndromeDetail").show();
       $(".crossLineThin").eq(1).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#syndromeContent").attr("hidden", true);
       $("#syndromeHeader").hide();
       $("#syndromeDetail").hide();
       $(".crossLineThin").eq(1).hide();
+      refreshPreview();
     }
   });
 
   $("#syndromeContent").bind("input", function(e){
     $("#syndromeDetail").text(e.target.value);
+    refreshPreview();
   });
 
   $("#allergy").click(function() {
@@ -634,17 +704,20 @@ $(document).ready(function () {
       $("#allergyHeader").show();
       $("#allergyDetail").show();
       $(".crossLineThin").eq(2).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#allergyContent").attr("hidden", true);
       $("#allergyHeader").hide();
       $("#allergyDetail").hide();
       $(".crossLineThin").eq(2).hide();
+      refreshPreview();
     }
   });
 
   $("#allergyContent").bind("input", function(e){
     $("#allergyDetail").text(e.target.value);
+    refreshPreview();
   });
 
   $("#flammable").click(function() {
@@ -653,17 +726,20 @@ $(document).ready(function () {
       $("#flammableHeader").show();
       $("#flammableDetail").show();
       $(".crossLineThin").eq(3).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#flammableContent").attr("hidden", true);
       $("#flammableHeader").hide();
       $("#flammableDetail").hide();
       $(".crossLineThin").eq(3).hide();
+      refreshPreview();
     }
   });
 
   $("#flammableContent").bind("input", function(e){
     $("#flammableDetail").text(e.target.value);
+    refreshPreview();
   });
 
   $("#choking").click(function() {
@@ -672,17 +748,20 @@ $(document).ready(function () {
       $("#chokingHeader").show();
       $("#chokingDetail").show();
       $(".crossLineThin").eq(4).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#chokingContent").attr("hidden", true);
       $("#chokingHeader").hide();
       $("#chokingDetail").hide();
       $(".crossLineThin").eq(4).hide();
+      refreshPreview();
     }
   });
 
   $("#chokingContent").bind("input", function(e){
     $("#chokingDetail").text(e.target.value);
+    refreshPreview();
   });
 
   $("#alchole").click(function() {
@@ -691,17 +770,20 @@ $(document).ready(function () {
       $("#alcholeHeader").show();
       $("#alcholeDetail").show();
       $(".crossLineThin").eq(5).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#alcholeContent").attr("hidden", true);
       $("#alcholeHeader").hide();
       $("#alcholeDetail").hide();
       $(".crossLineThin").eq(5).hide();
+      refreshPreview();
     }
   });
 
   $("#alcholeContent").bind("input", function(e){
     $("#alcholeDetail").text(e.target.value);
+    refreshPreview();
   });
 
   $("#stomach").click(function() {
@@ -710,17 +792,20 @@ $(document).ready(function () {
       $("#stomachHeader").show();
       $("#stomachDetail").show();
       $(".crossLineThin").eq(6).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#stomachContent").attr("hidden", true);
       $("#stomachHeader").hide();
       $("#stomachDetail").hide();
       $(".crossLineThin").eq(6).hide();
+      refreshPreview();
     }
   });
 
   $("#stomachContent").bind("input", function(e){
     $("#stomachDetail").text(e.target.value);
+    refreshPreview();
   });
 
   $("#sore").click(function() {
@@ -729,17 +814,20 @@ $(document).ready(function () {
       $("#soreHeader").show();
       $("#soreDetail").show();
       $(".crossLineThin").eq(7).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#soreContent").attr("hidden", true);
       $("#soreHeader").hide();
       $("#soreDetail").hide();
       $(".crossLineThin").eq(7).hide();
+      refreshPreview();
     }
   });
 
   $("#soreContent").bind("input", function(e){
     $("#soreDetail").text(e.target.value);
+    refreshPreview();
   });
 
   $("#dosage").click(function() {
@@ -748,17 +836,20 @@ $(document).ready(function () {
       $("#dosageHeader").show();
       $("#dosageDetail").show();
       $(".crossLineThin").eq(8).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#dosageContent").attr("hidden", true);
       $("#dosageHeader").hide();
       $("#dosageDetail").hide();
       $(".crossLineThin").eq(8).hide();
+      refreshPreview();
     }
   });
 
   $("#dosageContent").bind("input", function(e){
     $("#dosageDetail").text(e.target.value);
+    refreshPreview();
   });
 
   $("#std").click(function() {
@@ -767,17 +858,20 @@ $(document).ready(function () {
       $("#stdHeader").show();
       $("#stdDetail").show();
       $(".crossLineThin").eq(9).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#stdContent").attr("hidden", true);
       $("#stdHeader").hide();
       $("#stdDetail").hide();
       $(".crossLineThin").eq(9).hide();
+      refreshPreview();
     }
   });
 
   $("#stdContent").bind("input", function(e){
     $("#stdDetail").text(e.target.value);
+    refreshPreview();
   });
 
   $("#notuse").click(function() {
@@ -788,6 +882,7 @@ $(document).ready(function () {
       for(let i=1; i<= doNotUseCounter; i++)
         $("#notuseDetail_"+i).show();
       $(".crossLineThin").eq(10).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#doNotUseList").attr("hidden", true);
@@ -798,12 +893,14 @@ $(document).ready(function () {
         $("#notuseDetail_"+i).prev().hide();
       }
       $(".crossLineThin").eq(10).hide();
+      refreshPreview();
     }
   });
 
   $(document).on("input", ".doNotUseContent", function(e){
     var counter = $(this).parent().attr("id").split("_")[1];
     $("#notuseDetail_"+counter).text(e.target.value);
+    refreshPreview();
   });
 
   $("#youhave").click(function() {
@@ -814,6 +911,7 @@ $(document).ready(function () {
       for(let i=1; i<= youhaveCounter; i++)
         $("#youhaveDetail_"+i).show();
       $(".crossLineThin").eq(11).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#youhaveList").attr("hidden", true);
@@ -824,16 +922,19 @@ $(document).ready(function () {
         $("#youhaveDetail_"+i).prev().hide();
       }
       $(".crossLineThin").eq(11).hide();
+      refreshPreview();
     }
   });
 
   $(document).on("input", ".youhaveContent", function(e){
     var counter = $(this).parent().attr("id").split("_")[1];
     $("#youhaveDetail_"+counter).text(e.target.value);
+    refreshPreview();
   });
 
   $("#youhaveContent").bind("input", function(e){
     $("#youhaveDetail").text(e.target.value);
+    refreshPreview();
   });
 
   $("#childhave").click(function() {
@@ -844,6 +945,7 @@ $(document).ready(function () {
       for(let i=1; i<= childhaveCounter; i++)
         $("#childhaveDetail_"+i).show();
       $(".crossLineThin").eq(12).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#childhaveList").attr("hidden", true);
@@ -854,12 +956,14 @@ $(document).ready(function () {
         $("#childhaveDetail_"+i).prev().hide();
       }
       $(".crossLineThin").eq(12).hide();
+      refreshPreview();
     }
   });
 
   $(document).on("input", ".childhaveContent", function(e){
     var counter = $(this).parent().attr("id").split("_")[1];
     $("#childhaveDetail_"+counter).text(e.target.value);
+    refreshPreview();
   });
 
   $("#youare").click(function() {
@@ -868,17 +972,20 @@ $(document).ready(function () {
       $("#youareHeader").show();
       $("#youareDetail").show();
       $(".crossLineThin").eq(13).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#youareContent").attr("hidden", true);
       $("#youareHeader").hide();
       $("#youareDetail").hide();
       $(".crossLineThin").eq(13).hide();
+      refreshPreview();
     }
   });
 
   $("#youareContent").bind("input", function(e){
     $("#youareDetail").text(e.target.value);
+    refreshPreview();
   });
 
   $("#childis").click(function() {
@@ -887,17 +994,20 @@ $(document).ready(function () {
       $("#childisHeader").show();
       $("#childisDetail").show();
       $(".crossLineThin").eq(14).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#childisContent").attr("hidden", true);
       $("#childisHeader").hide();
       $("#childisDetail").hide();
       $(".crossLineThin").eq(14).hide();
+      refreshPreview();
     }
   });
 
   $("#childisContent").bind("input", function(e){
     $("#childisDetail").text(e.target.value);
+    refreshPreview();
   });
 
   $("#whenUsingThis").click(function() {
@@ -906,17 +1016,20 @@ $(document).ready(function () {
       $("#whenUsingThisHeader").show();
       $("#whenUsingThisDetail").show();
       $(".crossLineThin").eq(15).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#whenUsingThisContent").attr("hidden", true);
       $("#whenUsingThisHeader").hide();
       $("#whenUsingThisDetail").hide();
       $(".crossLineThin").eq(15).hide();
+      refreshPreview();
     }
   });
 
   $("#whenUsingThisContent").bind("input", function(e){
     $("#whenUsingThisDetail").text(e.target.value);
+    refreshPreview();
   });
 
   $("#stopUse").click(function() {
@@ -927,6 +1040,7 @@ $(document).ready(function () {
       for(let i=1; i<= stopUseCounter; i++)
         $("#stopUseDetail_"+i).show();
       $(".crossLineThin").eq(16).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#stopUseList").attr("hidden", true);
@@ -937,12 +1051,14 @@ $(document).ready(function () {
         $("#stopUseDetail_"+i).prev().hide();
       }
       $(".crossLineThin").eq(16).hide();
+      refreshPreview();
     }
   });
 
   $(document).on("input", ".stopUseContent", function(e){
     var counter = $(this).parent().attr("id").split("_")[1];
     $("#stopUseDetail_"+counter).text(e.target.value);
+    refreshPreview();
   });
 
   $("#pregnant").click(function() {
@@ -951,17 +1067,20 @@ $(document).ready(function () {
       $("#pregnantHeader").show();
       $("#pregnantDetail").show();
       $(".crossLineThin").eq(17).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#pregnantContent").attr("hidden", true);
       $("#pregnantHeader").hide();
       $("#pregnantDetail").hide();
       $(".crossLineThin").eq(17).hide();
+      refreshPreview();
     }
   });
 
   $("#pregnantContent").bind("input", function(e){
     $("#pregnantDetail").text(e.target.value);
+    refreshPreview();
   });
 
   $("#keepOut").click(function() {
@@ -970,17 +1089,20 @@ $(document).ready(function () {
       $("#keepOutHeader").show();
       $("#keepOutDetail").show();
       $(".crossLineThin").eq(18).show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#keepOutContent").attr("hidden", true);
       $("#keepOutHeader").hide();
       $("#keepOutDetail").hide();
       $(".crossLineThin").eq(18).hide();
+      refreshPreview();
     }
   });
 
   $("#keepOutContent").bind("input", function(e){
     $("#keepOutDetail").text(e.target.value);
+    refreshPreview();
   });
 
   $("#inActive").click(function() {
@@ -988,16 +1110,19 @@ $(document).ready(function () {
       $("#inActiveContent").removeAttr("hidden");
       $("#inActiveHeader").show();
       $("#inActiveDetail").show();
+      refreshPreview();
     }
     else if($(this).prop("checked") == false) {
       $("#inActiveContent").attr("hidden", true);
       $("#inActiveHeader").hide();
       $("#inActiveDetail").hide();
+      refreshPreview();
     }
   });
 
   $("#inActiveContent").bind("input", function(e){
     $("#inActiveDetail").text(e.target.value);
+    refreshPreview();
   });
 
 });
