@@ -467,7 +467,7 @@
             <span id="whenUsingThisHeader" class="warningHeader subSection">When using this product</span>
             <span id="whenUsingThisDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
-            <span id="stopUseHeader" class="warningHeader subSection">Stop use and ask a doctor if</span><br>
+            <span id="stopUseHeader" class="warningHeader subSection">Stop use and ask a doctor if</span>
             <span id="stopUseDetail_1" class="warningDetail content"></span>
             <div class="crossLineThin" id="pregnantCrossLine"></div>
             <span id="pregnantHeader" class="warningHeader subSection">If pregnant or breast-feeding</span>

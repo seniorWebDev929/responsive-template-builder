@@ -128,7 +128,7 @@ function calculatePurposePosition() {
   var left = radiusTopRight1 * width / 100;
   var offsetFromRight;
   if(top > topOffset){
-    offsetFromRight = left*(top - topOffset)/(2*top);
+    offsetFromRight = left*(top - topOffset)/(1.7*top);
   }
   else {
     offsetFromRight = 0;
@@ -150,7 +150,7 @@ function calculatePurposeDetailPosition() {
       var left = radiusTopRight1 * width / 100;
       var offsetFromRight;
       if(top > topOffset){
-        offsetFromRight = left*(top - topOffset)/(2*top);
+        offsetFromRight = left*(top - topOffset)/(1.7*top);
       }
       else {
         offsetFromRight = 0;
