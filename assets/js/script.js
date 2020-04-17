@@ -100,12 +100,6 @@ function refreshPreview() {
   $("#templatePreview").css("width", width + "px");
   $("#templatePreview").css("border-color", color);
  
-  calculatePurposePosition();
-  calculatePurposeDetailPosition();
-  addDottedLine();
-}
-
-function refreshFont() {
   $(".mainHeader").css("font-family", fontFamily.mainHeader);
   $(".subHeader").css("font-family", fontFamily.subHeader);
   $(".subSection").css("font-family", fontFamily.subSection);
@@ -122,7 +116,11 @@ function refreshFont() {
   $(".subHeader").css("font-style", italiced.subHeader);
   $(".subSection").css("font-style", italiced.subSection);
   $(".content").css("font-style", italiced.content);
+  calculatePurposePosition();
+  calculatePurposeDetailPosition();
+  addDottedLine();
 }
+
 function calculatePurposePosition() {
   var purposeHeaderWidth = $("#purposeHeader").width();
   var topOffset = $("#activeIngredientHeader").offset().top - $("#templatePreview").offset().top;
@@ -375,14 +373,14 @@ $(document).ready(function () {
     var selected = $(this).parent().parent()[0].id.split("_")[0];
     // $("."+selected).css("font-family", $(this).children("option:selected").val())
     fontFamily[selected] = $(this).children("option:selected").val();
-    refreshFont();
+    refreshPreview();
   });
 
   $(".fontSizeSetting").bind("input", function(e) {
     var selected = $(this).parent().parent()[0].id.split("_")[0];
     // $("."+selected).css("font-size", e.target.value + "px");
     fontSize[selected] = e.target.value;
-    refreshFont();
+    refreshPreview();
   });
 
   $(".bold").click(function(e) {
@@ -393,13 +391,13 @@ $(document).ready(function () {
       bolded[selected] = "400";
       $(this).removeAttr("bolded");
       $(this).css("border", "none");
-      refreshFont();
+      refreshPreview();
     } else {
       // $("."+selected).css("font-weight", "bold");
-      bolded[selected] = true;
+      bolded[selected] = "bold";
       $(this).attr("bolded", "true");
       $(this).css("border", "1px solid black");
-      refreshFont();
+      refreshPreview();
     }
   });
 
@@ -410,13 +408,13 @@ $(document).ready(function () {
       italiced[selected] = "normal";
       $(this).removeAttr("italiced");
       $(this).css("border", "none");
-      refreshFont();
+      refreshPreview();
     } else {
       // $("."+selected).css("font-style", "italic");
-      italiced[selected] = true;
+      italiced[selected] = "italic";
       $(this).attr("italiced","true");
       $(this).css("border", "1px solid black");
-      refreshFont();
+      refreshPreview();
     }
   });
 
