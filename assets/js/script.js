@@ -11,7 +11,7 @@ var width = 700;
 var color = "#000000";
 var ingredientCounter = 1;
 var checkedForWhat = false;
-var thickness = 1;
+var thickness = 2;
 var usesCounter = 1;
 var doNotUseCounter = 1;
 var youhaveCounter = 1;
@@ -70,6 +70,7 @@ function refreshPreview() {
   $("#templatePreview").css("width", width + "px");
   $("#templatePreview").css("border-color", color);
   $("#templatePreview").css("border-width", thickness);
+  $(".crossLineThick").css("border-width", thickness)
   $(".crossLineThick").css("margin-top", padding+"px");
   $(".crossLineThick").css("margin-bottom", padding+"px");
   $(".mainHeader, .subHeader, .crossLineThin, .subSection, .content").css("margin-left", padding+"px");
