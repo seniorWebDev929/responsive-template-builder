@@ -172,7 +172,7 @@ h1 {
 
 .crossLineThick {
   border-top: 2px solid black;
-  /* width: 1000px; */
+  width: 1000px;
 }
 
 .warningHeader {

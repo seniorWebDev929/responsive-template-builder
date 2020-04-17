@@ -134,7 +134,11 @@ function calculatePurposePosition() {
     offsetFromRight = 0;
   }
   var offsetFromLeft =  width - offsetFromRight - purposeHeaderWidth;
-  $("#purposeHeader").css("left", offsetFromLeft);
+  if(padding<15)
+    $("#purposeHeader").css("left", offsetFromLeft);
+  else if(padding>=15)
+    $("#purposeHeader").css("left", offsetFromLeft - padding + 15);
+  // $("#purposeHeader").css("left", offsetFromLeft);
 };
 
 function calculatePurposeDetailPosition() {
@@ -152,7 +156,10 @@ function calculatePurposeDetailPosition() {
         offsetFromRight = 0;
       }
       var offsetFromLeft =  width - offsetFromRight - purposeDetailWidth;
-      $("#purposeDetail_"+i).css("left", offsetFromLeft);
+      if(padding<15)
+        $("#purposeDetail_"+i).css("left", offsetFromLeft);
+      else if(padding>=15)
+        $("#purposeDetail_"+i).css("left", offsetFromLeft - padding + 15);
     } else {
       continue;
     }
