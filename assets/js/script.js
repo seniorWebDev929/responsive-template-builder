@@ -72,10 +72,15 @@ function refreshPreview() {
   $("#templatePreview").css("border-width", thickness);
   $(".crossLineThick").css("border-width", thickness)
   $(".crossLineThick").css("margin-top", padding+"px");
+  // $(".crossLineThick").css("margin-bottom", padding+"px");
+  // $(".mainHeader, .subHeader, .crossLineThin, .subSection, .content").css("margin-left", padding+"px");
+  // $(".mainHeader, .subHeader, .crossLineThin, .subSection, .content").css("margin-right", padding+"px");
+  // $("#purposeHeader").css("margin-left", "0");
+  // $(".purposeDetail").css("maring-left", "0");
+  $("#templatePreview").css("padding-left", padding+"px");
+  $("#templatePreview").css("padding-right", padding+"px");
   $(".crossLineThick").css("margin-bottom", padding+"px");
-  $(".mainHeader, .subHeader, .crossLineThin, .subSection, .content").css("margin-left", padding+"px");
-  $(".mainHeader, .subHeader, .crossLineThin, .subSection, .content").css("margin-right", padding+"px")
-
+  $(".crossLineThick").css("margin-left", "-"+padding+"px");
   $("#dotRounded").css("height", height);
   $("#dotRounded").css("width", width);
   $("#dotRounded").css("top", "-" + height + "px");
@@ -94,6 +99,13 @@ function refreshPreview() {
   $("#templatePreview").css("height", height + "px");
   $("#templatePreview").css("width", width + "px");
   $("#templatePreview").css("border-color", color);
+ 
+  calculatePurposePosition();
+  calculatePurposeDetailPosition();
+  addDottedLine();
+}
+
+function refreshFont() {
   $(".mainHeader").css("font-family", fontFamily.mainHeader);
   $(".subHeader").css("font-family", fontFamily.subHeader);
   $(".subSection").css("font-family", fontFamily.subSection);
@@ -110,11 +122,7 @@ function refreshPreview() {
   $(".subHeader").css("font-style", italiced.subHeader);
   $(".subSection").css("font-style", italiced.subSection);
   $(".content").css("font-style", italiced.content);
-  calculatePurposePosition();
-  calculatePurposeDetailPosition();
-  addDottedLine();
 }
-
 function calculatePurposePosition() {
   var purposeHeaderWidth = $("#purposeHeader").width();
   var topOffset = $("#activeIngredientHeader").offset().top - $("#templatePreview").offset().top;
@@ -367,30 +375,31 @@ $(document).ready(function () {
     var selected = $(this).parent().parent()[0].id.split("_")[0];
     // $("."+selected).css("font-family", $(this).children("option:selected").val())
     fontFamily[selected] = $(this).children("option:selected").val();
-    refreshPreview();
+    refreshFont();
   });
 
   $(".fontSizeSetting").bind("input", function(e) {
     var selected = $(this).parent().parent()[0].id.split("_")[0];
     // $("."+selected).css("font-size", e.target.value + "px");
     fontSize[selected] = e.target.value;
-    refreshPreview();
+    refreshFont();
   });
 
   $(".bold").click(function(e) {
     var selected = $(this).parent().parent()[0].id.split("_")[0];
+    console.log($(this).attr('bolded'))
     if($(this).attr('bolded') == "true"){
       // $("."+selected).css("font-weight", "400");
       bolded[selected] = "400";
       $(this).removeAttr("bolded");
       $(this).css("border", "none");
-      refreshPreview();
+      refreshFont();
     } else {
       // $("."+selected).css("font-weight", "bold");
       bolded[selected] = true;
-      $(this).attr("bolded", "bold");
+      $(this).attr("bolded", "true");
       $(this).css("border", "1px solid black");
-      refreshPreview();
+      refreshFont();
     }
   });
 
@@ -401,13 +410,13 @@ $(document).ready(function () {
       italiced[selected] = "normal";
       $(this).removeAttr("italiced");
       $(this).css("border", "none");
-      refreshPreview();
+      refreshFont();
     } else {
       // $("."+selected).css("font-style", "italic");
       italiced[selected] = true;
-      $(this).attr("italiced","italic");
+      $(this).attr("italiced","true");
       $(this).css("border", "1px solid black");
-      refreshPreview();
+      refreshFont();
     }
   });
 
@@ -655,11 +664,13 @@ $(document).ready(function () {
     if($(this).prop("checked") == true) {
       $("#forWhatContent").removeAttr("hidden");
       checkedForWhat = true;
+      $("<br>").insertBefore("#forWhatDetail");
       $("#forWhatDetail").text("For External Use Only");
       $("#forWhatDetail").show();
       refreshPreview();
     }
     else if($(this).prop("checked") == false) {
+      $("#forWhatDetail").prev("br").remove();
       $("#forWhatContent").attr("hidden", true);
       checkedForWhat = false;
       $("#forWhatDetail").hide();
@@ -877,6 +888,7 @@ $(document).ready(function () {
 
   $("#notuse").click(function() {
     if($(this).prop("checked") == true) {
+      $("<br>").insertAfter("#notuseHeader");
       $("#doNotUseList").removeAttr("hidden");
       $("#doNotUseAdd").removeAttr("hidden");
       $("#notuseHeader").show();
@@ -886,6 +898,7 @@ $(document).ready(function () {
       refreshPreview();
     }
     else if($(this).prop("checked") == false) {
+      $("#notuseHeader").next("br").remove();
       $("#doNotUseList").attr("hidden", true);
       $("#doNotUseAdd").attr("hidden", true);
       $("#notuseHeader").hide();
@@ -906,6 +919,7 @@ $(document).ready(function () {
 
   $("#youhave").click(function() {
     if($(this).prop("checked") == true) {
+      $("<br>").insertAfter("#youhaveHeader");
       $("#youhaveList").removeAttr("hidden");
       $("#youhaveAdd").removeAttr("hidden");
       $("#youhaveHeader").show();
@@ -915,6 +929,7 @@ $(document).ready(function () {
       refreshPreview();
     }
     else if($(this).prop("checked") == false) {
+      $("#youhaveHeader").next("br").remove();
       $("#youhaveList").attr("hidden", true);
       $("#youhaveAdd").attr("hidden", true);
       $("#youhaveHeader").hide();
@@ -940,6 +955,7 @@ $(document).ready(function () {
 
   $("#childhave").click(function() {
     if($(this).prop("checked") == true) {
+      $("<br>").insertAfter("#childhaveHeader");
       $("#childhaveList").removeAttr("hidden");
       $("#childhaveAdd").removeAttr("hidden");
       $("#childhaveHeader").show();
@@ -949,6 +965,7 @@ $(document).ready(function () {
       refreshPreview();
     }
     else if($(this).prop("checked") == false) {
+      $("#childhaveHeader").next("br").remove();
       $("#childhaveList").attr("hidden", true);
       $("#childhaveAdd").attr("hidden", true);
       $("#childhaveHeader").hide();
@@ -1035,6 +1052,7 @@ $(document).ready(function () {
 
   $("#stopUse").click(function() {
     if($(this).prop("checked") == true) {
+      $("<br>").insertAfter("#stopUseHeader");
       $("#stopUseList").removeAttr("hidden");
       $("#stopUseAdd").removeAttr("hidden");
       $("#stopUseHeader").show();
@@ -1044,6 +1062,7 @@ $(document).ready(function () {
       refreshPreview();
     }
     else if($(this).prop("checked") == false) {
+      $("#stopUseHeader").next("br").remove();
       $("#stopUseList").attr("hidden", true);
       $("#stopUseAdd").attr("hidden", true);
       $("#stopUseHeader").hide();

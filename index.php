@@ -419,7 +419,7 @@
             <span id="usesDetail_1" class="content"></span>
             <div class="crossLineThick" id="warningCrossLine"></div>
             
-            <span class="subHeader">Warnings</span><br>
+            <span class="subHeader">Warnings</span>
             <span id="forWhatDetail" class="warningDetail subSection"></span>
             <div class="crossLineThin" ></div>
             <span id="syndromeHeader" class="warningHeader subSection">Reye's syndrome warning</span>
@@ -449,13 +449,13 @@
             <span id="stdHeader" class="warningHeader subSection" >Sexually transmitted diseases (STDs) alert</span>
             <span id="stdDetail" class="warningDetail content"></span>
             <div class="crossLineThin"></div>
-            <span id="notuseHeader" class="warningHeader subSection">Do not use</span><br>
+            <span id="notuseHeader" class="warningHeader subSection">Do not use</span>
             <span id="notuseDetail_1" class="warningDetail content"></span>
             <div class="crossLineThin" id="askDoctorCrossLine"></div>
-            <span id="youhaveHeader" class="warningHeader subSection">Ask a doctor before use if you have</span><br>
+            <span id="youhaveHeader" class="warningHeader subSection">Ask a doctor before use if you have</span>
             <span id="youhaveDetail_1" class="warningDetail content"></span>
             <div class="crossLineThin" id="ifYourChildHasCrossLine"></div>
-            <span id="childhaveHeader" class="warningHeader subSection">Ask a doctor before use if the child has</span><br>
+            <span id="childhaveHeader" class="warningHeader subSection">Ask a doctor before use if the child has</span>
             <span id="childhaveDetail_1" class="warningDetail content"></span>
             <div class="crossLineThin" id="youareCrossLine"></div>
             <span id="youareHeader" class="warningHeader subSection">Ask a doctor or pharmacist before use if you are</span>
